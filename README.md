@@ -140,6 +140,12 @@ files need to be recompiled to JavaScript before executing. This can be
 accomplished by running `xcc -e node unittests/*.xp`.
 
 
+Contributing
+------------
+If you would like to contribute, you can do it the GitHub way by opening
+issues or pull requests.
+
+
 * * *
 
 
