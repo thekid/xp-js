@@ -47,12 +47,10 @@ Hello World
 ```sh
 $ node tools/node.js Hello
 *** Uncaught exception lang.IllegalArgumentException(Argument required)
-  at Throwable(message) ("Argument required")
-  at IllegalArgumentException(message) ("Argument required")
-  at Hello.main(args) (array[0])
-  at Method.invoke(obj, args) (null, array[1])
-  at <main>
-
+  at IllegalArgumentException("Argument required") [line 5 of IllegalArgumentException.js]
+  at Hello.main(array[0]) [line 6 of Hello.js]
+  at Method.invoke(null, array[1]) [line 26 of Method.js]
+  at __main() [line 194 of node.js]
 ```
 
 
@@ -74,11 +72,12 @@ Hello World
 ```sh
 $ cscript /nologo tools/cscript.js Hello 
 *** Uncaught exception lang.IllegalArgumentException(Argument required)
-  at Throwable(message) ("Argument required")
-  at IllegalArgumentException(message) ("Argument required")
-  at Hello.main(args) (array[0])
-  at Method.invoke(obj, args) (null, array[1])
-  at <main>
+  at Throwable("Argument required")
+  at IllegalArgumentException("Argument required")
+  at Hello.main(array[0])
+  at Method.invoke(null, array[1])
+  at __main()
+
 ```
 
 
