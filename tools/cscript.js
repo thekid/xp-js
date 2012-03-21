@@ -108,7 +108,7 @@ if (typeof(Array.prototype.forEach) === 'undefined') {
     }
   }
 }
-global.version= "0.5.14";
+global.version= "0.5.15";
 function scanpath(paths, home) {
   var inc= [];
   for (p= 0; p < paths.length; p++) {
