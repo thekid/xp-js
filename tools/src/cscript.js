@@ -127,4 +127,13 @@ if (typeof(Array.prototype.indexOf) === 'undefined') {
     return -1;
   }
 }
+
+if (typeof(Array.prototype.forEach) === 'undefined') {
+  Array.prototype.forEach= function(func, self) {
+    for (var i = 0; i < this.length; i++) {
+      func.call(self, this[i], i, this);
+    }
+  }
+}
+
 #include "common.js"
