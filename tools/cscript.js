@@ -80,6 +80,19 @@ if (typeof(Object.defineProperty) === 'undefined') {
     object[propertyname]= descriptor.value;
   }
 }
+if (typeof(Object.getOwnPropertyNames) === 'undefined') {
+  Object.getOwnPropertyNames= function(object) {
+    var names = [];
+    if (null !== object) {
+      for (var name in object) {
+        names.push(name);
+      }
+      names.push('prototype');
+      names.push('arguments');
+    }
+    return names;
+  }
+}
 if (typeof(Array.prototype.indexOf) === 'undefined') {
   Array.prototype.indexOf= function(val) {
     for (var i in this) {
@@ -88,7 +101,7 @@ if (typeof(Array.prototype.indexOf) === 'undefined') {
     return -1;
   }
 }
-global.version= "0.5.13";
+global.version= "0.5.14";
 function scanpath(paths, home) {
   var inc= [];
   for (p= 0; p < paths.length; p++) {

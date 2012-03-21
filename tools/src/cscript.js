@@ -105,6 +105,20 @@ if (typeof(Object.defineProperty) === 'undefined') {
   }
 }
 
+if (typeof(Object.getOwnPropertyNames) === 'undefined') {
+  Object.getOwnPropertyNames= function(object) {
+    var names = [];
+    if (null !== object) {
+      for (var name in object) {
+        names.push(name);
+      }
+      names.push('prototype');
+      names.push('arguments');
+    }
+    return names;
+  }
+}
+
 if (typeof(Array.prototype.indexOf) === 'undefined') {
   Array.prototype.indexOf= function(val) {
     for (var i in this) {
