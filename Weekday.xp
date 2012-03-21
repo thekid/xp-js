@@ -1,0 +1,13 @@
+public enum Weekday {
+  Monday,
+  Tuesday,
+  Wednesday,
+  Thursday,
+  Friday,
+  Saturday,
+  Sunday;
+  
+  public bool isWeekend() {
+    return $this._ordinal > 4;
+  }
+}

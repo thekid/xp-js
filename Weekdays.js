@@ -1,10 +1,5 @@
-uses('Weekday');
+uses('Weekday', 'util.cmd.Console');Weekdays= define('Weekdays','lang.Object',function Weekdays(){});
 
-Weekdays= define('Weekdays', 'lang.Object', function Weekdays() { });
-
-Weekdays.main = function Weekdays$main(args) {
-  var days= Weekday.values();
-  for (var i= 0; i < days.length; i++) {
-    util.cmd.Console.writeLine('#', i, ': ', days[i], ' weekend ? ', days[i].isWeekend());
-  }
-}
+Weekdays.main= function Weekdays$main(args){
+Weekday.values().forEach(function(day) {
+util.cmd.Console.writeLine(day,' weekend? ',day.isWeekend());});};
