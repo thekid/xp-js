@@ -11,7 +11,6 @@ var wsh = WScript.CreateObject('WScript.Shell');
 var _mgmts = null;
 function winmgmts() {
   if (null === _mgmts) {
-    global.out.writeLine("ACQUIRE MGMTS");
     _mgmts= GetObject('winmgmts://./root/cimv2');
   }
   return _mgmts;
@@ -77,6 +76,25 @@ process.memoryUsage = function() {
 }
 
 process.env = wsh.Environment;
+
+// Execution
+global.execution = {
+  trace : function(error) {
+    var current= arguments.callee.caller.caller;
+    var seen= [];
+    while (current) {
+      var f= current.toString();
+      var a= '';
+      for (var i= 0; i < current.arguments.length; i++) {
+        a += ', ' + lang.Throwable.stringOf(current.arguments[i]);
+      }
+      error.stacktrace.push((f.substring(9, f.indexOf('(')) || '<anonymous>').replace('$', '.') + '(' + a.substring(2) + ')');
+      if (current === global.__main || seen.indexOf(current) >= 0) break;   // Prevent endless loop
+      seen.push(current);
+      current = current.caller;
+    }
+  }
+};
  
 // STDIO
 global.out= {

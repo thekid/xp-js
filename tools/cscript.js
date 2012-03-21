@@ -4,7 +4,6 @@ var wsh = WScript.CreateObject('WScript.Shell');
 var _mgmts = null;
 function winmgmts() {
   if (null === _mgmts) {
-    global.out.writeLine("ACQUIRE MGMTS");
     _mgmts= GetObject('winmgmts://./root/cimv2');
   }
   return _mgmts;
@@ -59,6 +58,23 @@ process.memoryUsage = function() {
   return { rss: undefined };
 }
 process.env = wsh.Environment;
+global.execution = {
+  trace : function(error) {
+    var current= arguments.callee.caller.caller;
+    var seen= [];
+    while (current) {
+      var f= current.toString();
+      var a= '';
+      for (var i= 0; i < current.arguments.length; i++) {
+        a += ', ' + lang.Throwable.stringOf(current.arguments[i]);
+      }
+      error.stacktrace.push((f.substring(9, f.indexOf('(')) || '<anonymous>').replace('$', '.') + '(' + a.substring(2) + ')');
+      if (current === global.__main || seen.indexOf(current) >= 0) break;
+      seen.push(current);
+      current = current.caller;
+    }
+  }
+};
 global.out= {
   write : function(data) {
     WScript.StdOut.Write(data);
@@ -108,7 +124,7 @@ if (typeof(Array.prototype.forEach) === 'undefined') {
     }
   }
 }
-global.version= "0.5.15";
+global.version= "0.5.16";
 function scanpath(paths, home) {
   var inc= [];
   for (p= 0; p < paths.length; p++) {

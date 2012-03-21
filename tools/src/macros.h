@@ -1,1 +1,1 @@
-#define XPJS_VERSION() "0.5.15"
+#define XPJS_VERSION() "0.5.16"
