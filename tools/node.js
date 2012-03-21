@@ -39,8 +39,32 @@ process.runtime = function() {
 process.os = function() {
   return os.type() + ' ' + os.release() + ' (' + os.arch() + ')';
 }
+global.execution = {
+  trace : function(error) {
+    Error.captureStackTrace(error, lang.Throwable);
+    error.stack;
+  }
+};
+Error.prepareStackTrace = function(error, structured) {
+  for (var i = 0; i < structured.length; i++) {
+    var f= structured[i].getFunction();
+    var a= '';
+    for (var j = 0; j < f.arguments.length; j++) {
+      a += ', ' + lang.Throwable.stringOf(f.arguments[j]);
+    }
+    error.stacktrace.push(
+      structured[i].getFunctionName().replace(/\$/, '.') +
+      '(' + a.substring(2) + ')' +
+      ' [line ' + structured[i].getLineNumber() + ' of ' +
+      (structured[i].isNative() ? '(native)' : path.basename(structured[i].getFileName()))
+      + ']'
+    );
+    if (f === global.__main) break;
+  }
+  return '';
+};
 include = require;
-global.version= "0.5.15";
+global.version= "0.5.16";
 function scanpath(paths, home) {
   var inc= [];
   for (p= 0; p < paths.length; p++) {
