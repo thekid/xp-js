@@ -6,26 +6,7 @@ lang.Throwable = define('lang.Throwable', null, function Throwable(message) {
 
 lang.Throwable.prototype= Error.prototype;
 
-// root-trait
-lang.Throwable.prototype.getClass = function Throwable$getClass() {
-  return new lang.XPClass(this.__class);
-}
-lang.Throwable.prototype.getClassName = function Throwable$getClassName() {
-  return this.__class;
-}
-lang.Throwable.prototype.equals = function Throwable$equals(cmp) {
-  return this == cmp;
-}
-// root-trait
-
-lang.Throwable.prototype.message = '';
-lang.Throwable.prototype.stacktrace = new Array();
-
-lang.Throwable.prototype.getMessage = function Throwable$getMessage() {
-  return this.message;
-}
-
-lang.Throwable.prototype.stringOf = function Throwable$stringOf(arg) {
+lang.Throwable.stringOf = function Throwable$stringOf(arg) {
   switch (typeof(arg)) {
     case 'number': return arg;
     case 'boolean': return arg ? 'true' : 'false';
@@ -49,28 +30,35 @@ lang.Throwable.prototype.stringOf = function Throwable$stringOf(arg) {
   return typeof(arg);
 }
 
+// root-trait
+lang.Throwable.prototype.getClass = function Throwable$getClass() {
+  return new lang.XPClass(this.__class);
+}
+lang.Throwable.prototype.getClassName = function Throwable$getClassName() {
+  return this.__class;
+}
+lang.Throwable.prototype.equals = function Throwable$equals(cmp) {
+  return this == cmp;
+}
+// root-trait
+
+lang.Throwable.prototype.message = '';
+lang.Throwable.prototype.stacktrace = new Array();
+
+lang.Throwable.prototype.getMessage = function Throwable$getMessage() {
+  return this.message;
+}
+
 lang.Throwable.prototype.fillInStacktrace = function Throwable$fillInStacktrace() {
-  var current= arguments.callee.caller;
-  var seen= [];
-  while (current && current !== global.__main) {
-    var f= current.toString();
-    var a= '';
-    for (var i= 0; i < current.arguments.length; i++) {
-      a += ', ' + this.stringOf(current.arguments[i]);
-    }
-    this.stacktrace.push((f.substring(9, f.indexOf('{')) || '<anonymous>').replace('$', '.') + '(' + a.substring(2) + ')');
-    if (seen.indexOf(current) >= 0) break;   // Prevent endless loop
-    seen.push(current);
-    current = current.caller;
-  }
+  this.stacktrace= [];
+  global.execution.trace(this);
 }
 
 lang.Throwable.prototype.toString = function Throwable$toString() {
-  var r = this.__class + '(' + this.message + ")\n";
+  var r = this.__class + '(' + this.message + ')';
   for (var i= 0; i < this.stacktrace.length; i++) {
-    r += '  at ' + this.stacktrace[i] + "\n";
+    r += "\n  at " + this.stacktrace[i];
   }
-  r += '  at <main>';
   return r;
 }
 // }}}
