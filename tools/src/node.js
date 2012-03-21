@@ -57,6 +57,35 @@ process.os = function() {
   return os.type() + ' ' + os.release() + ' (' + os.arch() + ')';
 }
 
+// Execution
+global.execution = {
+  trace : function(error) {
+    Error.captureStackTrace(error, lang.Throwable);
+    error.stack;    // Cause prepareStackTrace() to execute
+  }
+};
+
+Error.prepareStackTrace = function(error, structured) {
+  for (var i = 0; i < structured.length; i++) {
+    var f= structured[i].getFunction();
+    var a= '';
+    for (var j = 0; j < f.arguments.length; j++) {
+      a += ', ' + lang.Throwable.stringOf(f.arguments[j]);
+    }
+
+    error.stacktrace.push(
+      structured[i].getFunctionName().replace(/\$/, '.') +
+      '(' + a.substring(2) + ')' +
+      ' [line ' + structured[i].getLineNumber() + ' of ' + 
+      (structured[i].isNative() ? '(native)' : path.basename(structured[i].getFileName())) 
+      + ']'
+    );
+
+    if (f === global.__main) break;
+  }
+  return '';
+};
+
 // Loading
 include = require;
 
