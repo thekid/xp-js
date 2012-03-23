@@ -122,4 +122,13 @@ lang.XPClass.prototype.getAnnotation = function XPClass$getAnnotation(name) {
   }
   return this.reflect['@'][name];
 }
+
+lang.XPClass.prototype.getInterfaces = function XPClass$getInterfaces(name) {
+  var interfaces = this.reflect['<'];
+  var results = [];
+  for (var i = 0; i < interfaces.length; i++) {
+    results.push(new XPClass(interfaces[i].__class));
+  }
+  return results;
+}
 // }}}

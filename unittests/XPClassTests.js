@@ -1,4 +1,4 @@
-uses('unittest.TestCase');
+uses('unittest.TestCase', 'lang.Generic');
 
 
 
@@ -276,3 +276,12 @@ this.assertNull(lang.XPClass.forName('lang.Object').getParentclass());};unittest
 
 unittests.XPClassTests.prototype.thisClassPackage= function XPClassTests$thisClassPackage(){
 this.assertEquals(new lang.reflect.Package('unittests'),this.getClass().getPackage());};unittests.XPClassTests.prototype.thisClassPackage['@']= {test:null};
+
+
+
+
+
+
+
+unittests.XPClassTests.prototype.objectImplementsGenericInterface= function XPClassTests$objectImplementsGenericInterface(){
+this.assertEquals([lang.XPClass.forName('lang.Generic')],lang.XPClass.forName('lang.Object').getInterfaces());};unittests.XPClassTests.prototype.objectImplementsGenericInterface['@']= {test:null};

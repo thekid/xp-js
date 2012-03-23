@@ -277,4 +277,13 @@ public class XPClassTests extends TestCase {
   public void thisClassPackage() {
     $this.assertEquals(new lang.reflect.Package('unittests'), $this.getClass().getPackage());
   }
+
+  /**
+   * Tests getInterfaces()
+   *
+   */
+  [@test]
+  public void objectImplementsGenericInterface() {
+    $this.assertEquals([Generic::class], Object::class.getInterfaces());
+  }
 }

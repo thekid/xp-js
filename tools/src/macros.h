@@ -1,2 +1,2 @@
-#define XPJS_VERSION() "0.7.0"
+#define XPJS_VERSION() "0.7.1"
 #define PHPJS_FILE "php.default.commonjs.min"

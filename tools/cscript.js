@@ -131,7 +131,7 @@ global.native = function() {
   );
   return exports;
 }();
-global.version= "0.7.0";
+global.version= "0.7.1";
 function scanpath(paths, home) {
   var inc= [];
   for (p= 0; p < paths.length; p++) {
