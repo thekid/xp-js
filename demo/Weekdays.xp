@@ -1,0 +1,10 @@
+package demo;
+
+public class Weekdays {
+
+  public static void main(string[] $args) {
+    foreach ($day in Weekday::values()) {
+      util.cmd.Console::writeLine($day, ' weekend? ', $day.isWeekend());
+    }
+  }
+}
