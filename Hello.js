@@ -1,9 +1,10 @@
-uses('util.cmd.Console');;
+// {{{ Hello
+Hello = define('Hello', 'lang.Object', function Hello () { });
 
-Hello= define('Hello','lang.Object',function Hello(){});
-
-Hello.main= function Hello$main(args){
-if (args.length < 1) {
-throw new lang.IllegalArgumentException('Argument required');};
-
-util.cmd.Console.writeLine('Hello ',global.native.ucfirst(args[0]));};
+Hello.main = function Hello$main(args) {
+  if (args.length < 1) {
+    throw new lang.IllegalArgumentException('Argument required');
+  }
+  util.cmd.Console.writeLine('Hello ', global.native.ucfirst(args[0]));
+}
+// }}}
