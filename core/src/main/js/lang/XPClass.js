@@ -71,6 +71,7 @@ lang.XPClass.prototype.getMethods = function XPClass$getMethods() {
 }
 
 lang.XPClass.prototype.hasField = function XPClass$hasField(name) {
+  name = '$' + name;
   return (name in this.$reflect || name in this.$reflect.prototype);
 }
 
@@ -85,8 +86,8 @@ lang.XPClass.prototype.getFields = function XPClass$getFields() {
   var fields = new Array();
   var gather = function(self, object, parent, modifiers) {
     for (var member in object) {
-      if ((parent || object.hasOwnProperty(member)) && typeof(object[member]) !== 'function') {
-        fields.push(new lang.reflect.Field(self, member, modifiers));
+      if ('$' === member.charAt(0) && (parent || object.hasOwnProperty(member))) {
+        fields.push(new lang.reflect.Field(self, member.substring(1), modifiers));
       }
     }
   };
