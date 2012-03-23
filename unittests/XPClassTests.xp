@@ -6,6 +6,7 @@
 package unittests;
 
 import unittest.TestCase;
+import native standard.in_array;
 
 /**
  * Test lang.XPClass
@@ -70,6 +71,18 @@ public class XPClassTests extends TestCase {
   }
 
   /**
+   * Tests getFields()
+   *
+   */
+  [@test]
+  public void nameField() {
+    $fields= $this.getClass().getFields();
+    $this.assertEquals(1, $fields.length);
+    $this.assertInstanceOf('lang.reflect.Field', $fields[0]);
+    $this.assertEquals('name', $fields[0].getName());
+  }
+
+  /**
    * Tests hasField()
    *
    */
@@ -123,6 +136,20 @@ public class XPClassTests extends TestCase {
   [@test, @expect('lang.ElementNotFoundException')]
   public void getNonExistantMethod() {
     $this.getClass().getMethod('non-existant');
+  }
+
+  /**
+   * Tests getMethods()
+   *
+   */
+  [@test]
+  public void objectMethods() {
+    $methods= Object::class.getMethods();
+    $expected= ['getClass', 'getClassName', 'equals', 'toString'];
+    $this.assertEquals($expected.length, $methods.length);
+    foreach ($method in $methods) {
+      $this.assertTrue(in_array($method.getName(), $expected));
+    }
   }
 
   /**

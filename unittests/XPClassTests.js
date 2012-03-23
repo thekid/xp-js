@@ -6,6 +6,7 @@ uses('unittest.TestCase', 'lang.Generic');
 
 
 ;
+;
 
 
 
@@ -74,6 +75,18 @@ this.assertEquals('name',$field.getName());};unittests.XPClassTests.prototype.na
 
 
 
+unittests.XPClassTests.prototype.nameField= function XPClassTests$nameField(){
+$fields=this.getClass().getFields();
+this.assertEquals(1,$fields.length);
+this.assertInstanceOf('lang.reflect.Field',$fields[0]);
+this.assertEquals('name',$fields[0].getName());};unittests.XPClassTests.prototype.nameField['@']= {test:null};
+
+
+
+
+
+
+
 unittests.XPClassTests.prototype.doesNotHaveNonExistantField= function XPClassTests$doesNotHaveNonExistantField(){
 this.assertFalse(this.getClass().hasField('non-existant'));};unittests.XPClassTests.prototype.doesNotHaveNonExistantField['@']= {test:null};
 
@@ -123,6 +136,20 @@ this.assertFalse(this.getClass().hasMethod('non-existant'));};unittests.XPClassT
 
 unittests.XPClassTests.prototype.getNonExistantMethod= function XPClassTests$getNonExistantMethod(){
 this.getClass().getMethod('non-existant');};unittests.XPClassTests.prototype.getNonExistantMethod['@']= {test:null,expect:'lang.ElementNotFoundException'};
+
+
+
+
+
+
+
+unittests.XPClassTests.prototype.objectMethods= function XPClassTests$objectMethods(){
+$methods=lang.XPClass.forName('lang.Object').getMethods();
+$expected=['getClass','getClassName','equals','toString'];
+this.assertEquals($expected.length,$methods.length);
+for (var $T0=0;$T0<$methods.length;$T0++) {$method=$methods[$T0];
+this.assertTrue(global.native.in_array($method.getName(),$expected));};};unittests.XPClassTests.prototype.objectMethods['@']= {test:null};
+
 
 
 
