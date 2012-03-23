@@ -178,6 +178,7 @@ uses(
   'util.cmd.Console'
 );
 
+global.xp = global;
 global.__main= function __main() {
   try {
     clazz = argv.shift() || 'xp.runtime.Version';
