@@ -65,7 +65,7 @@ Error.prepareStackTrace = function(error, structured) {
 };
 include = require;
 global.native = require('./' + "php.default.commonjs.min");
-global.version= "0.8.0";
+global.version= "0.8.1";
 function scanpath(paths, home) {
   var inc= [];
   for (p= 0; p < paths.length; p++) {
