@@ -10,6 +10,6 @@ lang.reflect.Field.prototype.getName = function Field$getName() {
 }
 
 lang.reflect.Field.prototype.toString = function Field$toString() {
-  return this.getClassName() + '<' + (this.$modifiers & 1 ? 'static ' : '') + this.$clazz.$name + '::' + this.$name + '>';
+  return 'public ' + (this.$modifiers & 1 ? 'static ' : '') + this.$clazz.$name + '::$' + this.$name;
 }
 // }}}
