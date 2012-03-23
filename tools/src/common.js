@@ -97,18 +97,14 @@ global.define= function define(name, parent, construct) {
   global[name] = construct || new Function;
   global[name].__class = name;
   if (null !== parent) {
-    extend(global[name], global[parent]);
+    var helper = new Function;
+    helper.prototype = global[parent].prototype;
+    var proto = new helper;
+    global[name].prototype = proto;
+    global[name].prototype.__super = global[parent];
   }
   global[name].prototype.__class = name;
   return global[name];
-}
-
-global.extend= function extend(self, parent) {
-  var helper = new Function;
-  helper.prototype = parent.prototype;
-  var proto = new helper;
-  self.prototype = proto;
-  self.prototype.__super = parent;
 }
 
 global.cast= function cast(value, type) {

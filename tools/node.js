@@ -65,7 +65,7 @@ Error.prepareStackTrace = function(error, structured) {
 };
 include = require;
 global.native = require('./' + "php.default.commonjs.min");
-global.version= "0.5.16";
+global.version= "0.6.2";
 function scanpath(paths, home) {
   var inc= [];
   for (p= 0; p < paths.length; p++) {
@@ -154,17 +154,14 @@ global.define= function define(name, parent, construct) {
   global[name] = construct || new Function;
   global[name].__class = name;
   if (null !== parent) {
-    extend(global[name], global[parent]);
+    var helper = new Function;
+    helper.prototype = global[parent].prototype;
+    var proto = new helper;
+    global[name].prototype = proto;
+    global[name].prototype.__super = global[parent];
   }
   global[name].prototype.__class = name;
   return global[name];
-}
-global.extend= function extend(self, parent) {
-  var helper = new Function;
-  helper.prototype = parent.prototype;
-  var proto = new helper;
-  self.prototype = proto;
-  self.prototype.__super = parent;
 }
 global.cast= function cast(value, type) {
   if ('int' === type) {
