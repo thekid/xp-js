@@ -1,0 +1,60 @@
+/* This class is part of the XP framework
+ *
+ * $Id$ 
+ */
+
+package unittests;
+
+import unittest.TestCase;
+
+/**
+ * Test lang.Generic
+ *
+ */
+public class IsTests extends TestCase {
+
+  /**
+   * Tests lang.Object
+   *
+   */
+  [@test]
+  public void objectIsAnInstance() {
+    $this.assertInstanceOf('lang.Generic', new Object());
+  }
+
+  /**
+   * Tests this
+   *
+   */
+  [@test]
+  public void thisIsAnInstance() {
+    $this.assertInstanceOf('lang.Generic', $this);
+  }
+
+  /**
+   * Tests lang.Throwable
+   *
+   */
+  [@test]
+  public void throwableIsAnInstance() {
+    $this.assertInstanceOf('lang.Generic', new Throwable('test'));
+  }
+
+  /**
+   * Tests NULL
+   *
+   */
+  [@test]
+  public void nullIsNotAnInstance() {
+    $this.assertFalse(null instanceof Generic);
+  }
+
+  /**
+   * Tests strings
+   *
+   */
+  [@test]
+  public void stringIsNotAnInstance() {
+    $this.assertFalse('test' instanceof Generic);
+  }
+}

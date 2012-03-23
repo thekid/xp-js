@@ -101,7 +101,7 @@ lang.XPClass.prototype.equals = function XPClass$equals(cmp) {
 }
 
 lang.XPClass.prototype.isInstance = function XPClass$isInstance(instance) {
-  return instance instanceof this.reflect;
+  return global.is(this.reflect, instance);
 }
 
 lang.XPClass.prototype.hasAnnotations = function XPClass$hasAnnotations() {

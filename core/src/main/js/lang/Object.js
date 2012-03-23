@@ -1,5 +1,6 @@
 // {{{ Object
 lang.Object = define('lang.Object', null, function Object() { });
+lang.Object['<']= [lang.Generic];
 
 // root-trait
 lang.Object.prototype.getClass = function Object$getClass() {

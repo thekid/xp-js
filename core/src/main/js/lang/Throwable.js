@@ -3,8 +3,7 @@ lang.Throwable = define('lang.Throwable', null, function Throwable(message) {
   this.message = message;
   this.fillInStacktrace();
 });
-
-lang.Throwable.prototype= Error.prototype;
+lang.Throwable['<']= [lang.Generic];
 
 lang.Throwable.stringOf = function Throwable$stringOf(arg) {
   switch (typeof(arg)) {

@@ -131,7 +131,7 @@ global.native = function() {
   );
   return exports;
 }();
-global.version= "0.6.2";
+global.version= "0.7.0";
 function scanpath(paths, home) {
   var inc= [];
   for (p= 0; p < paths.length; p++) {
@@ -224,10 +224,22 @@ global.define= function define(name, parent, construct) {
     helper.prototype = global[parent].prototype;
     var proto = new helper;
     global[name].prototype = proto;
+    global[name]['<']= global[parent]['<'];
     global[name].prototype.__super = global[parent];
   }
   global[name].prototype.__class = name;
   return global[name];
+}
+global.is = function is(t, instance) {
+  var type = 'string' === typeof(t) ? global[t] : t;
+  if (null === instance) return false;
+  if (instance instanceof type) return true;
+  if (instance.__class === undefined) return false;
+  var interfaces = global[instance.__class]['<'];
+  for (var i= 0; i < interfaces.length; i++) {
+    if (interfaces[i] === type) return true;
+  }
+  return false;
 }
 global.cast= function cast(value, type) {
   if ('int' === type) {
@@ -252,6 +264,7 @@ Error.prototype.toString = function() {
   return 'Error<' + this.name + ': ' + this.message + '>';
 }
 uses(
+  'lang.Generic',
   'lang.Object',
   'lang.Throwable',
   'lang.Error',

@@ -1,0 +1,69 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+lang.Generic= define('lang.Generic',null,function Generic(){});
+
+
+
+
+
+
+lang.Generic.prototype.hashCode= function Generic$hashCode(){};
+
+
+
+
+
+
+
+lang.Generic.prototype.equals= function Generic$equals(cmp){};
+
+
+
+
+
+
+
+lang.Generic.prototype.getClassName= function Generic$getClassName(){};
+
+
+
+
+
+
+
+lang.Generic.prototype.getClass= function Generic$getClass(){};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+lang.Generic.prototype.toString= function Generic$toString(){};

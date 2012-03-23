@@ -57,12 +57,8 @@ unittest.TestCase.prototype.assertNull = function TestCase$assertNull(val) {
 }
 
 unittest.TestCase.prototype.assertInstanceOf = function TestCase$assertInstanceOf(type, value) {
-  var actual = typeof(value);
-  if (actual === 'object') {
-    actual = value.getClassName();
-  }
-  if (actual !== type) {
-    throw new unittest.AssertionFailedError('Expected ' + type + ' but have ' + actual);
+  if (!global.is(type, value)) {
+    throw new unittest.AssertionFailedError('Expected an instance of ' + type + ' but have ' + value);
   }
 }
 // }}}
