@@ -5,9 +5,7 @@ Reflect.prototype.toString = function Reflect$toString() {
   return "Reflect instance";
 };
 
-Reflect.main = function Reflect$main(args) {
-  clazz= lang.XPClass.forName(args[0]);
-
+Reflect.forClass = function  Reflect$forClass(clazz) {
   util.cmd.Console.write(clazz);
   if (null !== (parent= clazz.getParentclass())) {
     util.cmd.Console.writeLine(' extends ' + parent.getName() + ' {');
@@ -23,6 +21,22 @@ Reflect.main = function Reflect$main(args) {
     util.cmd.Console.writeLine('  ' + method.toString());
   });
 
-  util.cmd.Console.writeLine(' }');
+  util.cmd.Console.writeLine('}');
+};
+
+Reflect.forPackage = function Reflect$forPackage(package) {
+  util.cmd.Console.writeLine(package, ' {');
+  package.getClassNames().forEach(function(name) {
+    util.cmd.Console.writeLine('  ' + name);
+  });
+  util.cmd.Console.writeLine('}');
+}
+
+Reflect.main = function Reflect$main(args) {
+  try {
+    Reflect.forClass(lang.XPClass.forName(args[0]));
+  } catch (e) {
+    Reflect.forPackage(lang.reflect.Package.forName(args[0]));
+  }
 }
 // }}}
