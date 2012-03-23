@@ -65,7 +65,7 @@ Error.prepareStackTrace = function(error, structured) {
 };
 include = require;
 global.native = require('./' + "php.default.commonjs.min");
-global.version= "0.7.1";
+global.version= "0.7.2";
 function scanpath(paths, home) {
   var inc= [];
   for (p= 0; p < paths.length; p++) {
@@ -193,6 +193,18 @@ global.cast= function cast(value, type) {
     if (value instanceof type) return value;
     throw new Error('Cannot cast ' + value + ' to ' + type);
   }
+}
+global.clone= function clone(object) {
+  if (typeof(object) !== 'object') return object;
+  var that = {};
+  for (var property in object) {
+    that[property]= clone(object[property]);
+  }
+  if ('__clone' in object) {
+    object['__clone'].call(that);
+  }
+  that.prototype = object.prototype;
+  return that;
 }
 Error.prototype.toString = function() {
   return 'Error<' + this.name + ': ' + this.message + '>';

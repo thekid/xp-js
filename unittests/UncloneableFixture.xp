@@ -1,0 +1,21 @@
+/* This class is part of the XP framework
+ *
+ * $Id$ 
+ */
+
+package unittests;
+
+/**
+ * Test clone()
+ *
+ */
+public class UncloneableFixture {
+  
+  /**
+   * Clone handler
+   *
+   */
+  public self __clone() {
+    throw new IllegalStateException('Cannot clone this');
+  }
+}

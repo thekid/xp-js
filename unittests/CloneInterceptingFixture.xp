@@ -1,0 +1,22 @@
+/* This class is part of the XP framework
+ *
+ * $Id$ 
+ */
+
+package unittests;
+
+/**
+ * Test clone()
+ *
+ */
+public class CloneInterceptingFixture {
+  public int $name = 'Original';
+  
+  /**
+   * Clone handler
+   *
+   */
+  public self __clone() {
+    $this.name = 'Cloned: ' ~ $this.name; 
+  }
+}

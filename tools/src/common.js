@@ -143,6 +143,22 @@ global.cast= function cast(value, type) {
   }
 }
 
+global.clone= function clone(object) {
+  if (typeof(object) !== 'object') return object;   // Short-circuit
+
+  var that = {};
+  for (var property in object) {
+    that[property]= clone(object[property]);
+  }
+  
+  if ('__clone' in object) {
+    object['__clone'].call(that);
+  }
+  
+  that.prototype = object.prototype;
+  return that;
+}
+
 Error.prototype.toString = function() {
   return 'Error<' + this.name + ': ' + this.message + '>';
 }

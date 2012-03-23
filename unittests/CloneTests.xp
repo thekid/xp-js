@@ -1,0 +1,71 @@
+/* This class is part of the XP framework
+ *
+ * $Id$ 
+ */
+
+package unittests;
+
+import unittest.TestCase;
+
+/**
+ * Test clone()
+ *
+ */
+public class CloneTests extends TestCase {
+
+  /**
+   * Tests cloning
+   *
+   */
+  [@test]
+  public void cloningNameCopy() {
+    $original= new CloneableFixture();
+    $copy= clone $original;
+    $copy.name= 'Clone';
+    $this.assertNotEquals($copy.name, $original.name);
+  }
+
+  /**
+   * Tests cloning
+   *
+   */
+  [@test]
+  public void cloningIdCopy() {
+    $original= new CloneableFixture();
+    $copy= clone $original;
+    $copy.id= 2;
+    $this.assertNotEquals($copy.id, $original.id);
+  }
+
+  /**
+   * Tests cloning
+   *
+   */
+  [@test]
+  public void cloningReferencesCopy() {
+    $original= new CloneableFixture();
+    $copy= clone $original;
+    $copy.references[0]= 2;
+    $this.assertNotEquals($copy.references, $original.references);
+  }
+
+  /**
+   * Tests cloning
+   *
+   */
+  [@test, @expect('lang.IllegalStateException')]
+  public void cloningUncloneable() {
+    clone new UncloneableFixture();
+  }
+
+  /**
+   * Tests cloning
+   *
+   */
+  [@test]
+  public void cloningWithInterceptor() {
+    $original= new CloneableFixture();
+    $copy= clone $original;
+    $this.assertNotEquals('Cloned: ' ~ $original.name, $copy.name);
+  }
+}
