@@ -10,4 +10,4 @@ Object.defineProperty(demo.Weekday,'Saturday',{ writeable : false, value : new d
 Object.defineProperty(demo.Weekday,'Sunday',{ writeable : false, value : new demo.Weekday(6,'Sunday')})
 
 demo.Weekday.prototype.isWeekend= function Weekday$isWeekend(){
-return this._ordinal > 4;};demo.Weekday.values= function Weekday$values(){return lang.Enum.membersOf(this);};
+return this.ordinal > 4;};demo.Weekday.values= function Weekday$values(){return lang.Enum.membersOf(this);};

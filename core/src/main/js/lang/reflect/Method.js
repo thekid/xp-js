@@ -1,25 +1,25 @@
 uses('lang.ElementNotFoundException');
 
 // {{{ Method
-lang.reflect.Method = define('lang.reflect.Method', 'lang.Object', function Method(clazz, name, modifiers) {
-  this.clazz = clazz;
-  if (typeof(clazz.reflect.prototype[name]) !== 'undefined') {
-    this.reflect = clazz.reflect.prototype[name];
+lang.reflect.Method = define('lang.reflect.Method', 'lang.Object', function Method($clazz, $name, $modifiers) {
+  this.$clazz = $clazz;
+  if (typeof($clazz.$reflect.prototype[$name]) !== 'undefined') {
+    this.reflect = $clazz.$reflect.prototype[$name];
   } else {
-    this.reflect = clazz.reflect[name];
+    this.reflect = $clazz.$reflect[$name];
   }
-  this.name = name;
-  this.modifiers = modifiers;
+  this.$name = $name;
+  this.$modifiers = $modifiers;
 });
 
-lang.reflect.Method.prototype.name = '';
+lang.reflect.Method.prototype.$name = '';
 
 lang.reflect.Method.prototype.getName = function Method$getName() {
-  return this.name;
+  return this.$name;
 }
 
 lang.reflect.Method.prototype.toString = function Method$toString() {
-  return this.getClassName() + '<' + (this.modifiers & 1 ? 'static ' : '') + this.clazz.name + '::' + this.name + '>';
+  return 'public var ' + (this.$modifiers & 1 ? 'static ' : '') + this.$name + '()';
 }
 
 lang.reflect.Method.prototype.invoke = function Method$invoke(obj, args) {

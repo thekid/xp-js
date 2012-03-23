@@ -1,8 +1,8 @@
 uses('lang.Throwable');
 
 // {{{ IOException
-io.IOException = define('io.IOException', 'lang.Throwable', function(message) {
-  lang.Throwable.call(this, message);
+io.IOException = define('io.IOException', 'lang.Throwable', function IOException($message) {
+  lang.Throwable.call(this, $message);
 });
 // }}}
 

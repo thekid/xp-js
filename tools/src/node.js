@@ -73,7 +73,7 @@ Error.prepareStackTrace = function(error, structured) {
       a += ', ' + lang.Throwable.stringOf(f.arguments[j]);
     }
 
-    error.stacktrace.push(
+    error.$stacktrace.push(
       structured[i].getFunctionName().replace(/\$/, '.') +
       '(' + a.substring(2) + ')' +
       ' [line ' + structured[i].getLineNumber() + ' of ' + 

@@ -64,9 +64,9 @@ this.assertTrue(this.getClass().hasField('name'));};unittests.XPClassTests.proto
 
 
 unittests.XPClassTests.prototype.nameField= function XPClassTests$nameField(){
-field=this.getClass().getField('name');
-this.assertInstanceOf('lang.reflect.Field',field);
-this.assertEquals('name',field.getName());};unittests.XPClassTests.prototype.nameField['@']= {test:null};
+$field=this.getClass().getField('name');
+this.assertInstanceOf('lang.reflect.Field',$field);
+this.assertEquals('name',$field.getName());};unittests.XPClassTests.prototype.nameField['@']= {test:null};
 
 
 
@@ -102,9 +102,9 @@ this.assertTrue(this.getClass().hasMethod('name'));};unittests.XPClassTests.prot
 
 
 unittests.XPClassTests.prototype.nameMethod= function XPClassTests$nameMethod(){
-Method=this.getClass().getMethod('name');
-this.assertInstanceOf('lang.reflect.Method',Method);
-this.assertEquals('name',Method.getName());};unittests.XPClassTests.prototype.nameMethod['@']= {test:null};
+$method=this.getClass().getMethod('name');
+this.assertInstanceOf('lang.reflect.Method',$method);
+this.assertEquals('name',$method.getName());};unittests.XPClassTests.prototype.nameMethod['@']= {test:null};
 
 
 

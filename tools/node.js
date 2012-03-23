@@ -52,7 +52,7 @@ Error.prepareStackTrace = function(error, structured) {
     for (var j = 0; j < f.arguments.length; j++) {
       a += ', ' + lang.Throwable.stringOf(f.arguments[j]);
     }
-    error.stacktrace.push(
+    error.$stacktrace.push(
       structured[i].getFunctionName().replace(/\$/, '.') +
       '(' + a.substring(2) + ')' +
       ' [line ' + structured[i].getLineNumber() + ' of ' +
@@ -65,7 +65,7 @@ Error.prepareStackTrace = function(error, structured) {
 };
 include = require;
 global.native = require('./' + "php.default.commonjs.min");
-global.version= "0.7.2";
+global.version= "0.8.0";
 function scanpath(paths, home) {
   var inc= [];
   for (p= 0; p < paths.length; p++) {

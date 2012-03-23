@@ -68,7 +68,7 @@ global.execution = {
       for (var i= 0; i < current.arguments.length; i++) {
         a += ', ' + lang.Throwable.stringOf(current.arguments[i]);
       }
-      error.stacktrace.push((f.substring(9, f.indexOf('(')) || '<anonymous>').replace('$', '.') + '(' + a.substring(2) + ')');
+      error.$stacktrace.push((f.substring(9, f.indexOf('(')) || '<anonymous>').replace('$', '.') + '(' + a.substring(2) + ')');
       if (current === global.__main || seen.indexOf(current) >= 0) break;
       seen.push(current);
       current = current.caller;
@@ -131,7 +131,7 @@ global.native = function() {
   );
   return exports;
 }();
-global.version= "0.7.2";
+global.version= "0.8.0";
 function scanpath(paths, home) {
   var inc= [];
   for (p= 0; p < paths.length; p++) {

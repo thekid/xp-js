@@ -37,8 +37,8 @@ this.assertEquals('lang.Object',new lang.Object().getClassName());};unittests.Ob
 
 
 unittests.ObjectTests.prototype.equalToItSelf= function ObjectTests$equalToItSelf(){
-o=new lang.Object();
-this.assertEquals(o,o);};unittests.ObjectTests.prototype.equalToItSelf['@']= {test:null};
+$o=new lang.Object();
+this.assertEquals($o,$o);};unittests.ObjectTests.prototype.equalToItSelf['@']= {test:null};
 
 
 

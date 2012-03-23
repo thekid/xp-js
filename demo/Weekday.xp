@@ -10,6 +10,6 @@ public enum Weekday {
   Sunday;
   
   public bool isWeekend() {
-    return $this._ordinal > 4;
+    return $this.ordinal > 4;
   }
 }

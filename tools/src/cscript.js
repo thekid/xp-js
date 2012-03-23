@@ -88,7 +88,7 @@ global.execution = {
       for (var i= 0; i < current.arguments.length; i++) {
         a += ', ' + lang.Throwable.stringOf(current.arguments[i]);
       }
-      error.stacktrace.push((f.substring(9, f.indexOf('(')) || '<anonymous>').replace('$', '.') + '(' + a.substring(2) + ')');
+      error.$stacktrace.push((f.substring(9, f.indexOf('(')) || '<anonymous>').replace('$', '.') + '(' + a.substring(2) + ')');
       if (current === global.__main || seen.indexOf(current) >= 0) break;   // Prevent endless loop
       seen.push(current);
       current = current.caller;

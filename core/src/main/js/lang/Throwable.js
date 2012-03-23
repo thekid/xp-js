@@ -41,22 +41,22 @@ lang.Throwable.prototype.equals = function Throwable$equals(cmp) {
 }
 // root-trait
 
-lang.Throwable.prototype.message = '';
-lang.Throwable.prototype.stacktrace = new Array();
+lang.Throwable.prototype.$message = '';
+lang.Throwable.prototype.$stacktrace = new Array();
 
 lang.Throwable.prototype.getMessage = function Throwable$getMessage() {
-  return this.message;
+  return this.$message;
 }
 
 lang.Throwable.prototype.fillInStacktrace = function Throwable$fillInStacktrace() {
-  this.stacktrace= [];
+  this.$stacktrace= [];
   global.execution.trace(this);
 }
 
 lang.Throwable.prototype.toString = function Throwable$toString() {
-  var r = this.__class + '(' + this.message + ')';
-  for (var i= 0; i < this.stacktrace.length; i++) {
-    r += "\n  at " + this.stacktrace[i];
+  var r = this.__class + '(' + this.$message + ')';
+  for (var i= 0; i < this.$stacktrace.length; i++) {
+    r += "\n  at " + this.$stacktrace[i];
   }
   return r;
 }
