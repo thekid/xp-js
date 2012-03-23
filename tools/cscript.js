@@ -124,6 +124,13 @@ if (typeof(Array.prototype.forEach) === 'undefined') {
     }
   }
 }
+global.native = function() {
+  eval(
+    'var exports = {}; ' +
+    fso.OpenTextFile(WScript.ScriptFullName.substring(0, WScript.ScriptFullName.lastIndexOf('\\')) + '\\' + "php.default.commonjs.min" + '.js', 1).ReadAll()
+  );
+  return exports;
+}();
 global.version= "0.5.16";
 function scanpath(paths, home) {
   var inc= [];
@@ -247,7 +254,19 @@ global.cast= function cast(value, type) {
 Error.prototype.toString = function() {
   return 'Error<' + this.name + ': ' + this.message + '>';
 }
-uses('lang.Object', 'lang.XPClass', 'util.cmd.Console', 'lang.IllegalArgumentException');
+uses(
+  'lang.Object',
+  'lang.Throwable',
+  'lang.Error',
+  'lang.XPException',
+  'lang.XPClass',
+  'lang.NullPointerException',
+  'lang.IllegalAccessException',
+  'lang.IllegalArgumentException',
+  'lang.IllegalStateException',
+  'lang.FormatException',
+  'util.cmd.Console'
+);
 global.__main= function __main() {
   try {
     clazz = argv.shift() || 'xp.runtime.Version';

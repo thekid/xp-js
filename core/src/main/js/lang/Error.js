@@ -1,0 +1,20 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+lang.Error= define('lang.Error','lang.Throwable',function Error(){lang.Throwable.apply(this, arguments);});

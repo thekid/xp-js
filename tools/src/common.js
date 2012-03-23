@@ -135,7 +135,19 @@ Error.prototype.toString = function() {
   return 'Error<' + this.name + ': ' + this.message + '>';
 }
 
-uses('lang.Object', 'lang.XPClass', 'util.cmd.Console', 'lang.IllegalArgumentException');
+uses(
+  'lang.Object',
+  'lang.Throwable',
+  'lang.Error',
+  'lang.XPException',
+  'lang.XPClass',
+  'lang.NullPointerException',
+  'lang.IllegalAccessException',
+  'lang.IllegalArgumentException',
+  'lang.IllegalStateException',
+  'lang.FormatException',
+  'util.cmd.Console'
+);
 
 global.__main= function __main() {
   try {

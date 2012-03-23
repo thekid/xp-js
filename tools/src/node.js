@@ -89,4 +89,7 @@ Error.prepareStackTrace = function(error, structured) {
 // Loading
 include = require;
 
+// Native
+global.native = require('./' + PHPJS_FILE);
+
 #include "common.js"

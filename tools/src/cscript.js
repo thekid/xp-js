@@ -154,4 +154,12 @@ if (typeof(Array.prototype.forEach) === 'undefined') {
   }
 }
 
+global.native = function() {
+  eval(
+    'var exports = {}; ' + 
+    fso.OpenTextFile(WScript.ScriptFullName.substring(0, WScript.ScriptFullName.lastIndexOf('\\')) + '\\' + PHPJS_FILE + '.js', 1).ReadAll()
+  );
+  return exports;
+}();
+
 #include "common.js"
