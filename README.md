@@ -83,7 +83,7 @@ $ cscript /nologo tools/cscript.js Hello
 
 Setting up the compiler
 -----------------------
-You need the branch "node" of my xp-language for checked out:
+You need the branch "node" of my xp-language fork checked out:
 
 ```sh
 $ git clone -b node git://github.com/thekid/xp-language.git xp.node
