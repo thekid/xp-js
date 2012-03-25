@@ -17,4 +17,4 @@ unittests.CloneInterceptingFixture.prototype.$name='Original';
 
 
 unittests.CloneInterceptingFixture.prototype.__clone= function CloneInterceptingFixture$__clone(){
-this.$name='Cloned: '+this.$name;};
+this.$name='Cloned: '+this.$name;};unittests.CloneInterceptingFixture.prototype.__clone['/']= 'Clone handler';unittests.CloneInterceptingFixture['/']= 'Test clone()';

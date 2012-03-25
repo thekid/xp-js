@@ -75,7 +75,7 @@ public class XPClassTests extends TestCase {
    *
    */
   [@test]
-  public void nameField() {
+  public void thisClassFields() {
     $fields= $this.getClass().getFields();
     $this.assertEquals(1, $fields.length);
     $this.assertInstanceOf('lang.reflect.Field', $fields[0]);
@@ -312,5 +312,26 @@ public class XPClassTests extends TestCase {
   [@test]
   public void objectImplementsGenericInterface() {
     $this.assertEquals([Generic::class], Object::class.getInterfaces());
+  }
+
+  /**
+   * Tests getComment()
+   *
+   */
+  [@test]
+  public void thisClassComment() {
+    $this.assertEquals('Test lang.XPClass', $this.getClass().getComment());
+  }
+
+  /**
+   * Tests Method::getComment()
+   *
+   */
+  [@test]
+  public void thisMethodsComment() {
+    $this.assertEquals(
+      'Tests Method::getComment()', 
+      $this.getClass().getMethod($this.name).getComment()
+    );
   }
 }

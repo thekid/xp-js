@@ -19,7 +19,7 @@ unittests.IsTests= define('unittests.IsTests','unittest.TestCase',function IsTes
 
 
 unittests.IsTests.prototype.objectIsAnInstance= function IsTests$objectIsAnInstance(){
-this.assertInstanceOf('lang.Generic',new lang.Object());};unittests.IsTests.prototype.objectIsAnInstance['@']= {test:null};
+this.assertInstanceOf('lang.Generic',new lang.Object());};unittests.IsTests.prototype.objectIsAnInstance['@']= {test:null};unittests.IsTests.prototype.objectIsAnInstance['/']= 'Tests lang.Object';
 
 
 
@@ -28,7 +28,7 @@ this.assertInstanceOf('lang.Generic',new lang.Object());};unittests.IsTests.prot
 
 
 unittests.IsTests.prototype.thisIsAnInstance= function IsTests$thisIsAnInstance(){
-this.assertInstanceOf('lang.Generic',this);};unittests.IsTests.prototype.thisIsAnInstance['@']= {test:null};
+this.assertInstanceOf('lang.Generic',this);};unittests.IsTests.prototype.thisIsAnInstance['@']= {test:null};unittests.IsTests.prototype.thisIsAnInstance['/']= 'Tests this';
 
 
 
@@ -37,7 +37,7 @@ this.assertInstanceOf('lang.Generic',this);};unittests.IsTests.prototype.thisIsA
 
 
 unittests.IsTests.prototype.throwableIsAnInstance= function IsTests$throwableIsAnInstance(){
-this.assertInstanceOf('lang.Generic',new lang.Throwable('test'));};unittests.IsTests.prototype.throwableIsAnInstance['@']= {test:null};
+this.assertInstanceOf('lang.Generic',new lang.Throwable('test'));};unittests.IsTests.prototype.throwableIsAnInstance['@']= {test:null};unittests.IsTests.prototype.throwableIsAnInstance['/']= 'Tests lang.Throwable';
 
 
 
@@ -46,7 +46,7 @@ this.assertInstanceOf('lang.Generic',new lang.Throwable('test'));};unittests.IsT
 
 
 unittests.IsTests.prototype.nullIsNotAnInstance= function IsTests$nullIsNotAnInstance(){
-this.assertFalse(global.is('lang.Generic',null));};unittests.IsTests.prototype.nullIsNotAnInstance['@']= {test:null};
+this.assertFalse(global.is('lang.Generic',null));};unittests.IsTests.prototype.nullIsNotAnInstance['@']= {test:null};unittests.IsTests.prototype.nullIsNotAnInstance['/']= 'Tests NULL';
 
 
 
@@ -55,4 +55,4 @@ this.assertFalse(global.is('lang.Generic',null));};unittests.IsTests.prototype.n
 
 
 unittests.IsTests.prototype.stringIsNotAnInstance= function IsTests$stringIsNotAnInstance(){
-this.assertFalse(global.is('lang.Generic','test'));};unittests.IsTests.prototype.stringIsNotAnInstance['@']= {test:null};
+this.assertFalse(global.is('lang.Generic','test'));};unittests.IsTests.prototype.stringIsNotAnInstance['@']= {test:null};unittests.IsTests.prototype.stringIsNotAnInstance['/']= 'Tests strings';unittests.IsTests['/']= 'Test lang.Generic';

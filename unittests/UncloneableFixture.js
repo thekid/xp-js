@@ -16,4 +16,4 @@ unittests.UncloneableFixture= define('unittests.UncloneableFixture','lang.Object
 
 
 unittests.UncloneableFixture.prototype.__clone= function UncloneableFixture$__clone(){
-throw new lang.IllegalStateException('Cannot clone this');};
+throw new lang.IllegalStateException('Cannot clone this');};unittests.UncloneableFixture.prototype.__clone['/']= 'Clone handler';unittests.UncloneableFixture['/']= 'Test clone()';

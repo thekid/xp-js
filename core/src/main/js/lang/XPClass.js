@@ -132,4 +132,8 @@ lang.XPClass.prototype.getInterfaces = function XPClass$getInterfaces(name) {
   }
   return results;
 }
+
+lang.XPClass.prototype.getComment = function XPClass$getComment() {
+  return this.$reflect['/'];
+}
 // }}}
