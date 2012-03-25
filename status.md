@@ -3,6 +3,14 @@ Implementation status
 This gives an overview of the XP microkernel's status compared to the
 XP Framework's core.
 
+* * *
+
+**If you would like to contribute, you can do it the GitHub way by opening
+issues or pull requests.**
+
+* * *
+
+
 Implemented
 -----------
 These features behave the same:
@@ -70,11 +78,3 @@ These features are missing in the compiler:
 * Indexers
 * Dynamic instanceof (`instanceof $t`)
 * Silence operator
-
-* * *
-
-**If you would like to contribute, you can do it the GitHub way by opening
-issues or pull requests.**
-
-* * *
-
