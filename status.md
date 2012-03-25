@@ -73,13 +73,8 @@ These features are missing in the compiler:
 
 * * *
 
-If you would like to contribute, you can do it the GitHub way by opening
-issues or pull requests.
+**If you would like to contribute, you can do it the GitHub way by opening
+issues or pull requests.**
 
 * * *
 
-Further reading:
-
-* http://nodejs.org/api/process.html - Runtime introspection
-* http://nodejs.org/api/child_process.html - Process excecution
-* http://nodejs.org/api/addons.html - Might be needed for crazier features
