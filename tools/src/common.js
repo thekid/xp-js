@@ -175,6 +175,7 @@ uses(
   'lang.IllegalArgumentException',
   'lang.IllegalStateException',
   'lang.FormatException',
+  'lang.ClassLoader',
   'util.cmd.Console'
 );
 
