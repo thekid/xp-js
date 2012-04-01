@@ -55,4 +55,25 @@ public class MethodTests extends TestCase {
     $this.assertEquals('var', $params[0].getTypeName());
     $this.assertEquals(Type::$VAR, $params[0].getType());
   }
+
+  /**
+   * Tests getParameter()
+   *
+   */
+  [@test]
+  public void oneArgMethodGetFirstParameter() {
+    $param= $this.oneArgMethod.getParameter(0);
+    $this.assertEquals('cmp', $param.getName());
+    $this.assertEquals('var', $param.getTypeName());
+    $this.assertEquals(Type::$VAR, $param.getType());
+  }
+
+  /**
+   * Tests getParameter()
+   *
+   */
+  [@test]
+  public void oneArgMethodGetNonExistantParameters() {
+    $this.assertNull($this.oneArgMethod.getParameter(1));
+  }
 }

@@ -53,4 +53,25 @@ $params=this.$oneArgMethod.getParameters();
 this.assertEquals(1,$params.length);
 this.assertEquals('cmp',$params[0].getName());
 this.assertEquals('var',$params[0].getTypeName());
-this.assertEquals(lang.Type.$VAR,$params[0].getType());};unittests.MethodTests.prototype.oneArgMethodGetParameters['@']= {test:null};unittests.MethodTests.prototype.oneArgMethodGetParameters['/']= 'Tests getParameters()';unittests.MethodTests['/']= 'Test lang.reflect.Method class';
+this.assertEquals(lang.Type.$VAR,$params[0].getType());};unittests.MethodTests.prototype.oneArgMethodGetParameters['@']= {test:null};unittests.MethodTests.prototype.oneArgMethodGetParameters['/']= 'Tests getParameters()';
+
+
+
+
+
+
+
+unittests.MethodTests.prototype.oneArgMethodGetFirstParameter= function MethodTests$oneArgMethodGetFirstParameter(){
+$param=this.$oneArgMethod.getParameter(0);
+this.assertEquals('cmp',$param.getName());
+this.assertEquals('var',$param.getTypeName());
+this.assertEquals(lang.Type.$VAR,$param.getType());};unittests.MethodTests.prototype.oneArgMethodGetFirstParameter['@']= {test:null};unittests.MethodTests.prototype.oneArgMethodGetFirstParameter['/']= 'Tests getParameter()';
+
+
+
+
+
+
+
+unittests.MethodTests.prototype.oneArgMethodGetNonExistantParameters= function MethodTests$oneArgMethodGetNonExistantParameters(){
+this.assertNull(this.$oneArgMethod.getParameter(1));};unittests.MethodTests.prototype.oneArgMethodGetNonExistantParameters['@']= {test:null};unittests.MethodTests.prototype.oneArgMethodGetNonExistantParameters['/']= 'Tests getParameter()';unittests.MethodTests['/']= 'Test lang.reflect.Method class';

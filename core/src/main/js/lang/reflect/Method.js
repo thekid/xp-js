@@ -43,8 +43,10 @@ lang.reflect.Method.prototype.getParameters = function Method$getParameters() {
   return this.$parameters;
 }
 
-lang.reflect.Method.prototype.getParameter = function Method$getParameter(num) {
-  return this.getParameters()[offset];
+lang.reflect.Method.prototype.getParameter = function Method$getParameter(offset) {
+  var p= this.getParameters();
+  if (offset < 0 || offset >= p.length) return null;
+  return p[offset];
 }
 
 lang.reflect.Method.prototype.numParameters = function Method$numParameters() {
