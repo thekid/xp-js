@@ -28,7 +28,7 @@ return $args;};unittests.VarArgsTest.prototype.newArray['/']= 'Fixture';unittest
 
 
 unittests.VarArgsTest.prototype.format= function VarArgsTest$format($format,$_){$args=Array.prototype.slice.call(arguments, 1);
-return global.native.vsprintf($format,$args);};unittests.VarArgsTest.prototype.format['/']= 'Fixture';unittests.VarArgsTest.prototype.format['_']= {returns: 'string',throws: [],signature: []};
+return global.native.vsprintf($format,$args);};unittests.VarArgsTest.prototype.format['/']= 'Fixture';unittests.VarArgsTest.prototype.format['_']= {returns: 'string',throws: [],signature: ['string']};
 
 
 

@@ -145,11 +145,29 @@ public class MethodTests extends TestCase {
    *
    */
   [@test]
+  public void noArgsMethodExceptionNames() {
+    $this.assertEquals([], $this.noArgsMethod.getExceptionNames());
+  }
+
+  /**
+   * Tests getExceptionNames()
+   *
+   */
+  [@test]
   public void operateExceptionNames() {
     $this.assertEquals(
       ['lang.IllegalStateException'], 
       self::class.getMethod('operate').getExceptionNames()
     );
+  }
+
+  /**
+   * Tests getExceptionTypes()
+   *
+   */
+  [@test]
+  public void noArgsMethodExceptionTypes() {
+    $this.assertEquals([], $this.noArgsMethod.getExceptionTypes());
   }
 
   /**

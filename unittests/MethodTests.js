@@ -145,6 +145,15 @@ unittests.MethodTests.prototype.operate= function MethodTests$operate(){};unitte
 
 
 
+unittests.MethodTests.prototype.noArgsMethodExceptionNames= function MethodTests$noArgsMethodExceptionNames(){
+this.assertEquals([],this.$noArgsMethod.getExceptionNames());};unittests.MethodTests.prototype.noArgsMethodExceptionNames['@']= {test:null};unittests.MethodTests.prototype.noArgsMethodExceptionNames['/']= 'Tests getExceptionNames()';unittests.MethodTests.prototype.noArgsMethodExceptionNames['_']= {returns: 'void',throws: [],signature: []};
+
+
+
+
+
+
+
 unittests.MethodTests.prototype.operateExceptionNames= function MethodTests$operateExceptionNames(){
 this.assertEquals(
 ['lang.IllegalStateException'],
