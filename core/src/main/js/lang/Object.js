@@ -12,6 +12,12 @@ lang.Object.prototype.getClassName = function Object$getClassName() {
 lang.Object.prototype.equals = function Object$equals(cmp) {
   return this == cmp;
 }
+lang.Object.prototype.hashCode = function Object$hashCode() {
+  if (this.__id === undefined) {
+    this.__id= global.objectid(this);
+  }
+  return this.__id;
+}
 // root-trait
 
 lang.Object.prototype.toString = function Object$toString() {

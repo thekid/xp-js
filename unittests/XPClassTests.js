@@ -145,7 +145,7 @@ this.getClass().getMethod('non-existant');};unittests.XPClassTests.prototype.get
 
 unittests.XPClassTests.prototype.objectMethods= function XPClassTests$objectMethods(){
 $methods=lang.XPClass.forName('lang.Object').getMethods();
-$expected=['getClass','getClassName','equals','toString'];
+$expected=['getClass','getClassName','equals','hashCode','toString'];
 this.assertEquals($expected.length,$methods.length);
 for (var $T0=0;$T0<$methods.length;$T0++) {$method=$methods[$T0];
 this.assertTrue(global.native.in_array($method.getName(),$expected));};};unittests.XPClassTests.prototype.objectMethods['@']= {test:null};unittests.XPClassTests.prototype.objectMethods['/']= 'Tests getMethods()';

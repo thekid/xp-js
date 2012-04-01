@@ -145,7 +145,7 @@ public class XPClassTests extends TestCase {
   [@test]
   public void objectMethods() {
     $methods= Object::class.getMethods();
-    $expected= ['getClass', 'getClassName', 'equals', 'toString'];
+    $expected= ['getClass', 'getClassName', 'equals', 'hashCode', 'toString'];
     $this.assertEquals($expected.length, $methods.length);
     foreach ($method in $methods) {
       $this.assertTrue(in_array($method.getName(), $expected));

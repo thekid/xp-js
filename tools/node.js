@@ -232,6 +232,9 @@ global.clone= function clone(object) {
   that.prototype = object.prototype;
   return that;
 }
+global.objectid= function objectid(object) {
+  return global.native.uniqid();
+}
 Error.prototype.toString = function() {
   return 'Error<' + this.name + ': ' + this.message + '>';
 }
