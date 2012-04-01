@@ -85,4 +85,28 @@ public class MethodTests extends TestCase {
   public void noArgsMethodGetNonExistantParameters() {
     $this.assertNull($this.noArgsMethod.getParameter(0));
   }
+  
+  /**
+   * Fixture for the following two tests
+   *
+   */
+  protected abstract var variableReturnTypeFixture();
+
+  /**
+   * Tests getReturnTypeName()
+   *
+   */
+  [@test]
+  public void variableReturnTypeName() {
+    $this.assertEquals('var', self::class.getMethod('variableReturnTypeFixture').getReturnTypeName());
+  }
+
+  /**
+   * Tests getReturnType()
+   *
+   */
+  [@test]
+  public void variableReturnType() {
+    $this.assertEquals(Type::$VAR, self::class.getMethod('variableReturnTypeFixture').getReturnType());
+  }
 }

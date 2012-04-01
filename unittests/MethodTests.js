@@ -83,4 +83,28 @@ this.assertNull(this.$oneArgMethod.getParameter(1));};unittests.MethodTests.prot
 
 
 unittests.MethodTests.prototype.noArgsMethodGetNonExistantParameters= function MethodTests$noArgsMethodGetNonExistantParameters(){
-this.assertNull(this.$noArgsMethod.getParameter(0));};unittests.MethodTests.prototype.noArgsMethodGetNonExistantParameters['@']= {test:null};unittests.MethodTests.prototype.noArgsMethodGetNonExistantParameters['/']= 'Tests getParameter()';unittests.MethodTests['/']= 'Test lang.reflect.Method class';
+this.assertNull(this.$noArgsMethod.getParameter(0));};unittests.MethodTests.prototype.noArgsMethodGetNonExistantParameters['@']= {test:null};unittests.MethodTests.prototype.noArgsMethodGetNonExistantParameters['/']= 'Tests getParameter()';
+
+
+
+
+
+
+unittests.MethodTests.prototype.variableReturnTypeFixture= function MethodTests$variableReturnTypeFixture(){};unittests.MethodTests.prototype.variableReturnTypeFixture['/']= 'Fixture for the following two tests';
+
+
+
+
+
+
+unittests.MethodTests.prototype.variableReturnTypeName= function MethodTests$variableReturnTypeName(){
+this.assertEquals('var',lang.XPClass.forName('unittests.MethodTests').getMethod('variableReturnTypeFixture').getReturnTypeName());};unittests.MethodTests.prototype.variableReturnTypeName['@']= {test:null};unittests.MethodTests.prototype.variableReturnTypeName['/']= 'Tests getReturnTypeName()';
+
+
+
+
+
+
+
+unittests.MethodTests.prototype.variableReturnType= function MethodTests$variableReturnType(){
+this.assertEquals(lang.Type.$VAR,lang.XPClass.forName('unittests.MethodTests').getMethod('variableReturnTypeFixture').getReturnType());};unittests.MethodTests.prototype.variableReturnType['@']= {test:null};unittests.MethodTests.prototype.variableReturnType['/']= 'Tests getReturnType()';unittests.MethodTests['/']= 'Test lang.reflect.Method class';
