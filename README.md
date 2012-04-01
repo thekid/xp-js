@@ -119,6 +119,26 @@ Done: 1/1 compiled, 0 failed
 Then, run it as seen above.
 
 
+Class path
+----------
+For a start just put all the classes in the current directory. Later on,
+when you want to start sorting stuff out, you can place compiled classes 
+anywhere in the class path. The class path is compiled from the paths 
+listed in the `.pth` files (as with the XP Framework). To get an overview 
+of all currently registered class paths, execute the entry point without 
+arguments:
+
+```sh
+$ node tools/node.js
+XP JS Microkernel 0.8.6 { Node 0.6.12 & V8 3.6.6.24 } @ Windows_NT 6.1.7600 (ia32)
+Copyright (c) 2011-2012 the XP group
+lang.FileSystemClassLoader<C:\cygwin\home\friebe\devel\xp-js\core\src\main\js>
+lang.FileSystemClassLoader<C:\cygwin\home\friebe\devel\xp-js\test\src\main\js>
+lang.FileSystemClassLoader<C:\cygwin\home\friebe\devel\xp-js\tools\src\main\js>
+lang.FileSystemClassLoader<C:\cygwin\home\friebe\devel\xp-js>
+```
+
+
 Testing
 -------
 The classes provided in the microkernel are tested by unittests in the
