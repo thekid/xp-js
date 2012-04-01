@@ -67,6 +67,7 @@ These features are not present:
 * Runtime introspection
 * Shutdown hooks
 * Proxies - depend on runtime class definition
+* Filesystem and socket I/O
 
 Not supported by compiler
 -------------------------
