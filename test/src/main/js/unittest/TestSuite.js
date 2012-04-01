@@ -14,6 +14,7 @@ unittest.TestSuite.prototype.run = function TestSuite$run() {
 
   // Run tests
   util.cmd.Console.write('[');
+  var o= 1;
   for (var i= 0; i < this.$tests.length; i++) {
     var methods = this.$tests[i].getMethods();
 
@@ -55,6 +56,10 @@ unittest.TestSuite.prototype.run = function TestSuite$run() {
         }
       }
       instance.tearDown();
+      if (++o > 72) {
+        util.cmd.Console.writeLine();
+        o= 0;
+      }
     }
   }
   util.cmd.Console.writeLine(']');
