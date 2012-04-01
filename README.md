@@ -127,11 +127,12 @@ command:
 
 ```sh
 $ node tools/node.js Unittest unittests.*
-[....................................................]
+[........................................................................
+..]
 
-OK: 52 run, 52 succeeded, 0 failed
-Memory used: 12648 kB
-Time taken: 0.012 sec(s)
+OK: 74 run, 74 succeeded, 0 failed
+Memory used: 12960 kB
+Time taken: 0.022 sec(s)
 ```
 
 The tests are written in XP language. Any changes made to the `*.xp`
@@ -142,7 +143,8 @@ accomplished by running `xcc -e node unittests/*.xp`.
 Contributing
 ------------
 If you would like to contribute, you can do it the GitHub way by opening
-issues or pull requests.
+issues or pull requests. To see where help is needed, check the 
+[implementation status document](https://github.com/thekid/xp-js/blob/master/status.md)
 
 
 * * *
