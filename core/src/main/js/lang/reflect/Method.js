@@ -24,19 +24,21 @@ lang.reflect.Method.prototype.toString = function Method$toString() {
   var p= this.getParameters();
   var s= '';
   for (var i= 0; i < p.length; i++) {
-    s+= ', ' + p[i].getTypeName() + ' ' + p[i].getName();
+    s+= ', ' + p[i].getTypeName() + ' $' + p[i].getName();
   }
-  return 'public var ' + (this.$modifiers & 1 ? 'static ' : '') + this.$name + '(' + s.substring(2) + ')';
+  return 'public ' + this.getReturnTypeName() + ' ' + (this.$modifiers & 1 ? 'static ' : '') + this.$name + '(' + s.substring(2) + ')';
 }
 
 lang.reflect.Method.prototype.getParameters = function Method$getParameters() {
   if (null === this.$parameters) {    // Cache
     var s= this.$reflect.prototype.constructor.toString();
-    var a= s.substring(s.indexOf('(')+ 1, s.indexOf('{')- 2).split(/, ?/);
+    var a= s.substring(s.indexOf('(')+ 1, s.indexOf(')')).split(/, ?/);
+    var t= this.$reflect['_'] === undefined ? [] : this.$reflect['_']['signature'];
+
     this.$parameters= [];
     if ('' !== a[0]) {      // ''.split() = ['']
       for (var i= 0; i < a.length; i++) {
-        this.$parameters.push(new lang.reflect.Parameter({ name : a[i], type: 'var' }));
+        this.$parameters.push(new lang.reflect.Parameter({ name : a[i], type: t[i] || 'var' }));
       }
     }
   }

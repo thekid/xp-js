@@ -17,6 +17,13 @@ public class MethodTests extends TestCase {
   protected Method $oneArgMethod= Object::class.getMethod('equals');
 
   /**
+   * Fixture
+   *
+   */
+  protected void uniqueName(parent $instance, string $prefix) {
+  }
+
+  /**
    * Tests numParameters()
    *
    */
@@ -32,6 +39,15 @@ public class MethodTests extends TestCase {
   [@test]
   public void oneArgMethodNumParameters() {
     $this.assertEquals(1, $this.oneArgMethod.numParameters());
+  }
+
+  /**
+   * Tests numParameters()
+   *
+   */
+  [@test]
+  public void fixtureNumParameters() {
+    $this.assertEquals(2, self::class.getMethod('uniqueName').numParameters());
   }
 
   /**
@@ -54,6 +70,32 @@ public class MethodTests extends TestCase {
     $this.assertEquals('cmp', $params[0].getName());
     $this.assertEquals('var', $params[0].getTypeName());
     $this.assertEquals(Type::$VAR, $params[0].getType());
+  }
+
+  /**
+   * Tests getParameters()
+   *
+   */
+  [@test]
+  public void fixtureFirstParameter() {
+    $params= self::class.getMethod('uniqueName').getParameters();
+    $this.assertEquals(2, $params.length);
+    $this.assertEquals('instance', $params[0].getName());
+    $this.assertEquals('unittest.TestCase', $params[0].getTypeName());
+    $this.assertEquals(unittest.TestCase::class, $params[0].getType());
+  }
+
+  /**
+   * Tests getParameters()
+   *
+   */
+  [@test]
+  public void fixtureSecondParameters() {
+    $params= self::class.getMethod('uniqueName').getParameters();
+    $this.assertEquals(2, $params.length);
+    $this.assertEquals('prefix', $params[1].getName());
+    $this.assertEquals('string', $params[1].getTypeName());
+    $this.assertEquals(Primitive::$STRING, $params[1].getType());
   }
 
   /**

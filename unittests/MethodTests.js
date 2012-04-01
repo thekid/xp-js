@@ -20,6 +20,13 @@ unittests.MethodTests.prototype.$oneArgMethod=lang.XPClass.forName('lang.Object'
 
 
 
+unittests.MethodTests.prototype.uniqueName= function MethodTests$uniqueName($instance,$prefix){};unittests.MethodTests.prototype.uniqueName['/']= 'Fixture';unittests.MethodTests.prototype.uniqueName['_']= {returns: 'void',throws: [],signature: ['unittest.TestCase','string',]};
+
+
+
+
+
+
 
 unittests.MethodTests.prototype.noArgsMethodNumParameters= function MethodTests$noArgsMethodNumParameters(){
 this.assertEquals(0,this.$noArgsMethod.numParameters());};unittests.MethodTests.prototype.noArgsMethodNumParameters['@']= {test:null};unittests.MethodTests.prototype.noArgsMethodNumParameters['/']= 'Tests numParameters()';unittests.MethodTests.prototype.noArgsMethodNumParameters['_']= {returns: 'void',throws: [],signature: []};
@@ -32,6 +39,15 @@ this.assertEquals(0,this.$noArgsMethod.numParameters());};unittests.MethodTests.
 
 unittests.MethodTests.prototype.oneArgMethodNumParameters= function MethodTests$oneArgMethodNumParameters(){
 this.assertEquals(1,this.$oneArgMethod.numParameters());};unittests.MethodTests.prototype.oneArgMethodNumParameters['@']= {test:null};unittests.MethodTests.prototype.oneArgMethodNumParameters['/']= 'Tests numParameters()';unittests.MethodTests.prototype.oneArgMethodNumParameters['_']= {returns: 'void',throws: [],signature: []};
+
+
+
+
+
+
+
+unittests.MethodTests.prototype.fixtureNumParameters= function MethodTests$fixtureNumParameters(){
+this.assertEquals(2,lang.XPClass.forName('unittests.MethodTests').getMethod('uniqueName').numParameters());};unittests.MethodTests.prototype.fixtureNumParameters['@']= {test:null};unittests.MethodTests.prototype.fixtureNumParameters['/']= 'Tests numParameters()';unittests.MethodTests.prototype.fixtureNumParameters['_']= {returns: 'void',throws: [],signature: []};
 
 
 
@@ -54,6 +70,32 @@ this.assertEquals(1,$params.length);
 this.assertEquals('cmp',$params[0].getName());
 this.assertEquals('var',$params[0].getTypeName());
 this.assertEquals(lang.Type.$VAR,$params[0].getType());};unittests.MethodTests.prototype.oneArgMethodGetParameters['@']= {test:null};unittests.MethodTests.prototype.oneArgMethodGetParameters['/']= 'Tests getParameters()';unittests.MethodTests.prototype.oneArgMethodGetParameters['_']= {returns: 'void',throws: [],signature: []};
+
+
+
+
+
+
+
+unittests.MethodTests.prototype.fixtureFirstParameter= function MethodTests$fixtureFirstParameter(){
+$params=lang.XPClass.forName('unittests.MethodTests').getMethod('uniqueName').getParameters();
+this.assertEquals(2,$params.length);
+this.assertEquals('instance',$params[0].getName());
+this.assertEquals('unittest.TestCase',$params[0].getTypeName());
+this.assertEquals(lang.XPClass.forName('unittest.TestCase'),$params[0].getType());};unittests.MethodTests.prototype.fixtureFirstParameter['@']= {test:null};unittests.MethodTests.prototype.fixtureFirstParameter['/']= 'Tests getParameters()';unittests.MethodTests.prototype.fixtureFirstParameter['_']= {returns: 'void',throws: [],signature: []};
+
+
+
+
+
+
+
+unittests.MethodTests.prototype.fixtureSecondParameters= function MethodTests$fixtureSecondParameters(){
+$params=lang.XPClass.forName('unittests.MethodTests').getMethod('uniqueName').getParameters();
+this.assertEquals(2,$params.length);
+this.assertEquals('prefix',$params[1].getName());
+this.assertEquals('string',$params[1].getTypeName());
+this.assertEquals(lang.Primitive.$STRING,$params[1].getType());};unittests.MethodTests.prototype.fixtureSecondParameters['@']= {test:null};unittests.MethodTests.prototype.fixtureSecondParameters['/']= 'Tests getParameters()';unittests.MethodTests.prototype.fixtureSecondParameters['_']= {returns: 'void',throws: [],signature: []};
 
 
 
@@ -159,6 +201,15 @@ this.assertEquals(
 ['lang.IllegalStateException'],
 lang.XPClass.forName('unittests.MethodTests').getMethod('operate').getExceptionNames());};unittests.MethodTests.prototype.operateExceptionNames['@']= {test:null};unittests.MethodTests.prototype.operateExceptionNames['/']= 'Tests getExceptionNames()';unittests.MethodTests.prototype.operateExceptionNames['_']= {returns: 'void',throws: [],signature: []};
 
+
+
+
+
+
+
+
+unittests.MethodTests.prototype.noArgsMethodExceptionTypes= function MethodTests$noArgsMethodExceptionTypes(){
+this.assertEquals([],this.$noArgsMethod.getExceptionTypes());};unittests.MethodTests.prototype.noArgsMethodExceptionTypes['@']= {test:null};unittests.MethodTests.prototype.noArgsMethodExceptionTypes['/']= 'Tests getExceptionTypes()';unittests.MethodTests.prototype.noArgsMethodExceptionTypes['_']= {returns: 'void',throws: [],signature: []};
 
 
 
