@@ -1,0 +1,51 @@
+/* This class is part of the XP framework
+ *
+ * $Id$ 
+ */
+
+package unittests;
+
+import unittest.TestCase;
+
+import native standard.vsprintf;
+
+/**
+ * Test varargs
+ *
+ */
+public class VarArgsTest extends TestCase {
+
+  /**
+   * Fixture
+   *
+   */
+  protected var[] newArray(var... $args) {
+    return $args;
+  }
+
+  /**
+   * Fixture
+   *
+   */
+  protected string format(string? $format, var... $args) {
+    return vsprintf($format, $args);
+  }
+
+  /**
+   * Tests 
+   *
+   */
+  [@test]
+  public void firstOffset() {
+    $this.assertEquals([1, 2, 3], $this.newArray(1, 2, 3));
+  }
+
+  /**
+   * Tests 
+   *
+   */
+  [@test]
+  public void secondOffset() {
+    $this.assertEquals('2012-04-01', $this.format('%04d-%02d-%02d', 2012, 4, 1));
+  }
+}
