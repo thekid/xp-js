@@ -26,6 +26,7 @@ These features behave the same:
 * Static initializers
 * Stack traces (in node.js, WSH missing file / line)
 * Type information for methods and their signature
+* Type system - no primitives, map and array types
 
 Supported by compilation
 ------------------------
@@ -40,7 +41,6 @@ Incomplete features
 These features are not complete yet:
 
 * Class Loader infrastructure - no .xar files
-* Type system - no primitives, map and array types
 * Class reflection
 * Package reflection
 * Interfaces - no runtime checks, inheritance missing
