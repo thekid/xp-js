@@ -8,7 +8,7 @@ lang.reflect.Parameter.prototype.getName = function Parameter$getName() {
 }
 
 lang.reflect.Parameter.prototype.getType = function Parameter$getType() {
-  return null; // TBI lang.Type.forName(this.$reflect.type);
+  return lang.Type.forName(this.$reflect.type);
 }
 
 lang.reflect.Parameter.prototype.getTypeName = function Parameter$getTypeName() {

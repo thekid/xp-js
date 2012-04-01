@@ -52,4 +52,5 @@ unittests.MethodTests.prototype.oneArgMethodGetParameters= function MethodTests$
 $params=this.$oneArgMethod.getParameters();
 this.assertEquals(1,$params.length);
 this.assertEquals('cmp',$params[0].getName());
-this.assertEquals('var',$params[0].getTypeName());};unittests.MethodTests.prototype.oneArgMethodGetParameters['@']= {test:null};unittests.MethodTests.prototype.oneArgMethodGetParameters['/']= 'Tests getParameters()';unittests.MethodTests['/']= 'Test lang.reflect.Method class';
+this.assertEquals('var',$params[0].getTypeName());
+this.assertEquals(lang.Type.$VAR,$params[0].getType());};unittests.MethodTests.prototype.oneArgMethodGetParameters['@']= {test:null};unittests.MethodTests.prototype.oneArgMethodGetParameters['/']= 'Tests getParameters()';unittests.MethodTests['/']= 'Test lang.reflect.Method class';
