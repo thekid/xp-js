@@ -132,7 +132,8 @@ public class MethodTests extends TestCase {
    * Fixture for the following two tests
    *
    */
-  protected abstract var variableReturnTypeFixture();
+  protected var variableReturnTypeFixture() {
+  }
 
   /**
    * Tests getReturnTypeName()
@@ -156,7 +157,8 @@ public class MethodTests extends TestCase {
    * Fixture for the following two tests
    *
    */
-  protected abstract void voidReturnTypeFixture();
+  protected void voidReturnTypeFixture() {
+  }
 
   /**
    * Tests getReturnTypeName()
@@ -180,7 +182,8 @@ public class MethodTests extends TestCase {
    * Fixture for the following two tests
    *
    */
-  protected abstract void operate() throws IllegalStateException;
+  protected void operate() throws IllegalStateException {
+  }
 
   /**
    * Tests getExceptionNames()
