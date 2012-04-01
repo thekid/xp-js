@@ -44,6 +44,7 @@ These features are not complete yet:
 * Package reflection
 * Interfaces - no runtime checks, inheritance missing
 * Typesafe enums - abstract enums missing, reflection
+* Type information for methods and their signature
 
 Missing features
 ----------------
@@ -55,7 +56,6 @@ These features are not present:
 * Abstract
 * Final
 * Type checks
-* Type information for methods and their signature
 * Thrown exceptions metadata
 * Runtime class definition
 * Constructor reflection
