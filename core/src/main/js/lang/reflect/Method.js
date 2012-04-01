@@ -53,6 +53,14 @@ lang.reflect.Method.prototype.numParameters = function Method$numParameters() {
   return this.getParameters().length;
 }
 
+lang.reflect.Method.prototype.getReturnTypeName = function Method$getReturnTypeName() {
+  return 'var';
+}
+
+lang.reflect.Method.prototype.getReturnType = function Method$getReturnType() {
+  return lang.Type.$VAR;
+}
+
 lang.reflect.Method.prototype.invoke = function Method$invoke(obj, args) {
   return this.$reflect.apply(obj, args);
 }

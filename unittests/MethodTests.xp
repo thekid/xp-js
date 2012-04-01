@@ -76,4 +76,13 @@ public class MethodTests extends TestCase {
   public void oneArgMethodGetNonExistantParameters() {
     $this.assertNull($this.oneArgMethod.getParameter(1));
   }
+
+  /**
+   * Tests getParameter()
+   *
+   */
+  [@test]
+  public void noArgsMethodGetNonExistantParameters() {
+    $this.assertNull($this.noArgsMethod.getParameter(0));
+  }
 }
