@@ -25,6 +25,7 @@ These features behave the same:
 * Object cloning
 * Static initializers
 * Stack traces (in node.js, WSH missing file / line)
+* Type information for methods and their signature
 
 Supported by compilation
 ------------------------
@@ -44,7 +45,6 @@ These features are not complete yet:
 * Package reflection
 * Interfaces - no runtime checks, inheritance missing
 * Typesafe enums - abstract enums missing, reflection
-* Type information for methods and their signature
 
 Missing features
 ----------------
