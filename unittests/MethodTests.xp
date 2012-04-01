@@ -109,4 +109,58 @@ public class MethodTests extends TestCase {
   public void variableReturnType() {
     $this.assertEquals(Type::$VAR, self::class.getMethod('variableReturnTypeFixture').getReturnType());
   }
+
+  /**
+   * Fixture for the following two tests
+   *
+   */
+  protected abstract void voidReturnTypeFixture();
+
+  /**
+   * Tests getReturnTypeName()
+   *
+   */
+  [@test]
+  public void voidReturnTypeName() {
+    $this.assertEquals('void', self::class.getMethod('voidReturnTypeFixture').getReturnTypeName());
+  }
+
+  /**
+   * Tests getReturnType()
+   *
+   */
+  [@test]
+  public void voidReturnType() {
+    $this.assertEquals(Type::$VOID, self::class.getMethod('voidReturnTypeFixture').getReturnType());
+  }
+
+  /**
+   * Fixture for the following two tests
+   *
+   */
+  protected abstract void operate() throws IllegalStateException;
+
+  /**
+   * Tests getExceptionNames()
+   *
+   */
+  [@test]
+  public void operateExceptionNames() {
+    $this.assertEquals(
+      ['lang.IllegalStateException'], 
+      self::class.getMethod('operate').getExceptionNames()
+    );
+  }
+
+  /**
+   * Tests getExceptionTypes()
+   *
+   */
+  [@test]
+  public void operateExceptionTypes() {
+    $this.assertEquals(
+      [lang.IllegalStateException::class], 
+      self::class.getMethod('operate').getExceptionTypes()
+    );
+  }
 }

@@ -54,11 +54,27 @@ lang.reflect.Method.prototype.numParameters = function Method$numParameters() {
 }
 
 lang.reflect.Method.prototype.getReturnTypeName = function Method$getReturnTypeName() {
-  return 'var';
+  if (this.$reflect['_'] === undefined) return 'var';
+  return this.$reflect['_']['returns'];
 }
 
 lang.reflect.Method.prototype.getReturnType = function Method$getReturnType() {
-  return lang.Type.$VAR;
+  return lang.Type.forName(this.getReturnTypeName());
+}
+
+lang.reflect.Method.prototype.getExceptionNames = function Method$getExceptionNames() {
+  if (this.$reflect['_'] === undefined) return [];
+  return this.$reflect['_']['throws'];
+}
+
+lang.reflect.Method.prototype.getExceptionTypes = function Method$getExceptionTypes() {
+  if (this.$reflect['_'] === undefined) return [];
+  var t= this.$reflect['_']['throws'];
+  var r= [];
+  for (var i= 0; i < t.length; i++) {
+    r.push(lang.XPClass.forName(t[i]));
+  }
+  return r;
 }
 
 lang.reflect.Method.prototype.invoke = function Method$invoke(obj, args) {
