@@ -4,6 +4,9 @@ lang.reflect.Parameter = define('lang.reflect.Parameter', 'lang.Object', functio
 });
 
 lang.reflect.Parameter.prototype.getName = function Parameter$getName() {
+  if ('$' === this.$reflect.name.charAt(0)) {
+    return this.$reflect.name.substring(1);
+  }
   return this.$reflect.name;
 }
 
