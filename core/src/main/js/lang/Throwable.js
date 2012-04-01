@@ -39,6 +39,12 @@ lang.Throwable.prototype.getClassName = function Throwable$getClassName() {
 lang.Throwable.prototype.equals = function Throwable$equals(cmp) {
   return this == cmp;
 }
+lang.Object.prototype.hashCode = function Object$hashCode() {
+  if (this.__id === undefined) {
+    this.__id= global.objectid(this);
+  }
+  return this.__id;
+}
 // root-trait
 
 lang.Throwable.prototype.$message = '';

@@ -1,7 +1,7 @@
-uses('lang.reflect.Modifiers', 'lang.reflect.Field', 'lang.reflect.Method', 'lang.reflect.Package', 'lang.ElementNotFoundException', 'lang.ClassNotFoundException');
+uses('lang.Type', 'lang.reflect.Modifiers', 'lang.reflect.Field', 'lang.reflect.Method', 'lang.reflect.Package', 'lang.ElementNotFoundException', 'lang.ClassNotFoundException');
 
 // {{{ XPClass
-lang.XPClass = define('lang.XPClass', 'lang.Object', function XPClass(name) {
+lang.XPClass = define('lang.XPClass', 'lang.Type', function XPClass(name) {
   this.$name = name;
   this.$reflect = global[name];
 });
@@ -12,10 +12,6 @@ lang.XPClass.forName = function XPClass$forName(name) {
     throw new lang.ClassNotFoundException('Cannot find class "' + name + '"');
   }
   return new lang.XPClass(name);
-}
-
-lang.XPClass.prototype.toString = function XPClass$toString() {
-  return this.getClassName() + '<' + this.$name + '>';
 }
 
 lang.XPClass.prototype.getName = function XPClass$getName() {

@@ -1,0 +1,58 @@
+/* This class is part of the XP framework
+ *
+ * $Id$ 
+ */
+
+package unittests;
+
+import unittest.TestCase;
+import lang.reflect.Method;
+
+/**
+ * Test lang.reflect.Method class
+ *
+ */
+public class MethodTests extends TestCase {
+  protected Method $noArgsMethod= Object::class.getMethod('hashCode');
+  protected Method $oneArgMethod= Object::class.getMethod('equals');
+
+  /**
+   * Tests numParameters()
+   *
+   */
+  [@test]
+  public void noArgsMethodNumParameters() {
+    $this.assertEquals(0, $this.noArgsMethod.numParameters());
+  }
+
+  /**
+   * Tests numParameters()
+   *
+   */
+  [@test]
+  public void oneArgMethodNumParameters() {
+    $this.assertEquals(1, $this.oneArgMethod.numParameters());
+  }
+
+  /**
+   * Tests getParameters()
+   *
+   */
+  [@test]
+  public void noArgsMethodGetParameters() {
+    $this.assertEquals([], $this.noArgsMethod.getParameters());
+  }
+
+  /**
+   * Tests getParameters()
+   *
+   */
+  [@test]
+  public void oneArgMethodGetParameters() {
+    $params= $this.oneArgMethod.getParameters();
+    $this.assertEquals(1, $params.length);
+    $this.assertEquals('cmp', $params[0].getName());
+    $this.assertEquals('var', $params[0].getTypeName());
+    $this.assertEquals(Type::$VAR, $params[0].getType());
+  }
+}

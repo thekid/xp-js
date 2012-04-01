@@ -161,7 +161,7 @@ global.native = function() {
   );
   return exports;
 }();
-global.version= "0.8.3";
+global.version= "0.8.5";
 function scanpath(paths, home) {
   var inc= [];
   for (p= 0; p < paths.length; p++) {
@@ -314,6 +314,7 @@ uses(
   'lang.Throwable',
   'lang.Error',
   'lang.XPException',
+  'lang.Type',
   'lang.XPClass',
   'lang.NullPointerException',
   'lang.IllegalAccessException',
