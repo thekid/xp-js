@@ -16,6 +16,10 @@ lang.Type.forName = function Type$forName($name) {
     return lang.Type.$VAR;
   } else if ('void' === $name) {
     return lang.Type.$VOID;
+  } else if ('[]' === $name.substr($name.length - 2, 2)) {
+    return new lang.ArrayType($name);
+  } else if ('[:' === $name.substr(0, 2)) {
+    return new lang.MapType($name);
   }
 
   return lang.XPClass.forName($name);

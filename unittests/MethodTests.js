@@ -20,7 +20,7 @@ unittests.MethodTests.prototype.$oneArgMethod=lang.XPClass.forName('lang.Object'
 
 
 
-unittests.MethodTests.prototype.uniqueName= function MethodTests$uniqueName($instance,$prefix){};unittests.MethodTests.prototype.uniqueName['/']= 'Fixture';unittests.MethodTests.prototype.uniqueName['_']= {returns: 'void',throws: [],signature: ['unittest.TestCase','string',]};
+unittests.MethodTests.prototype.nameVariants= function MethodTests$nameVariants($instance,$prefix){};unittests.MethodTests.prototype.nameVariants['/']= 'Fixture';unittests.MethodTests.prototype.nameVariants['_']= {returns: 'string[]',throws: [],signature: ['unittest.TestCase','string',]};
 
 
 
@@ -47,7 +47,7 @@ this.assertEquals(1,this.$oneArgMethod.numParameters());};unittests.MethodTests.
 
 
 unittests.MethodTests.prototype.fixtureNumParameters= function MethodTests$fixtureNumParameters(){
-this.assertEquals(2,lang.XPClass.forName('unittests.MethodTests').getMethod('uniqueName').numParameters());};unittests.MethodTests.prototype.fixtureNumParameters['@']= {test:null};unittests.MethodTests.prototype.fixtureNumParameters['/']= 'Tests numParameters()';unittests.MethodTests.prototype.fixtureNumParameters['_']= {returns: 'void',throws: [],signature: []};
+this.assertEquals(2,lang.XPClass.forName('unittests.MethodTests').getMethod('nameVariants').numParameters());};unittests.MethodTests.prototype.fixtureNumParameters['@']= {test:null};unittests.MethodTests.prototype.fixtureNumParameters['/']= 'Tests numParameters()';unittests.MethodTests.prototype.fixtureNumParameters['_']= {returns: 'void',throws: [],signature: []};
 
 
 
@@ -78,7 +78,7 @@ this.assertEquals(lang.Type.$VAR,$params[0].getType());};unittests.MethodTests.p
 
 
 unittests.MethodTests.prototype.fixtureFirstParameter= function MethodTests$fixtureFirstParameter(){
-$params=lang.XPClass.forName('unittests.MethodTests').getMethod('uniqueName').getParameters();
+$params=lang.XPClass.forName('unittests.MethodTests').getMethod('nameVariants').getParameters();
 this.assertEquals(2,$params.length);
 this.assertEquals('instance',$params[0].getName());
 this.assertEquals('unittest.TestCase',$params[0].getTypeName());
@@ -91,7 +91,7 @@ this.assertEquals(lang.XPClass.forName('unittest.TestCase'),$params[0].getType()
 
 
 unittests.MethodTests.prototype.fixtureSecondParameters= function MethodTests$fixtureSecondParameters(){
-$params=lang.XPClass.forName('unittests.MethodTests').getMethod('uniqueName').getParameters();
+$params=lang.XPClass.forName('unittests.MethodTests').getMethod('nameVariants').getParameters();
 this.assertEquals(2,$params.length);
 this.assertEquals('prefix',$params[1].getName());
 this.assertEquals('string',$params[1].getTypeName());
@@ -132,7 +132,28 @@ this.assertNull(this.$noArgsMethod.getParameter(0));};unittests.MethodTests.prot
 
 
 
+
+unittests.MethodTests.prototype.arrayReturnTypeName= function MethodTests$arrayReturnTypeName(){
+this.assertEquals('string[]',lang.XPClass.forName('unittests.MethodTests').getMethod('nameVariants').getReturnTypeName());};unittests.MethodTests.prototype.arrayReturnTypeName['@']= {test:null};unittests.MethodTests.prototype.arrayReturnTypeName['/']= 'Tests getReturnTypeName()';unittests.MethodTests.prototype.arrayReturnTypeName['_']= {returns: 'void',throws: [],signature: []};
+
+
+
+
+
+
+
+unittests.MethodTests.prototype.arrayReturnType= function MethodTests$arrayReturnType(){
+$t=lang.XPClass.forName('unittests.MethodTests').getMethod('nameVariants').getReturnType();
+this.assertInstanceOf('lang.ArrayType',$t);
+this.assertEquals('string',$t.componentType());};unittests.MethodTests.prototype.arrayReturnType['@']= {test:null};unittests.MethodTests.prototype.arrayReturnType['/']= 'Tests getReturnType()';unittests.MethodTests.prototype.arrayReturnType['_']= {returns: 'void',throws: [],signature: []};
+
+
+
+
+
+
 unittests.MethodTests.prototype.variableReturnTypeFixture= function MethodTests$variableReturnTypeFixture(){};unittests.MethodTests.prototype.variableReturnTypeFixture['/']= 'Fixture for the following two tests';unittests.MethodTests.prototype.variableReturnTypeFixture['_']= {returns: 'var',throws: [],signature: []};
+
 
 
 
@@ -163,6 +184,7 @@ unittests.MethodTests.prototype.voidReturnTypeFixture= function MethodTests$void
 
 
 
+
 unittests.MethodTests.prototype.voidReturnTypeName= function MethodTests$voidReturnTypeName(){
 this.assertEquals('void',lang.XPClass.forName('unittests.MethodTests').getMethod('voidReturnTypeFixture').getReturnTypeName());};unittests.MethodTests.prototype.voidReturnTypeName['@']= {test:null};unittests.MethodTests.prototype.voidReturnTypeName['/']= 'Tests getReturnTypeName()';unittests.MethodTests.prototype.voidReturnTypeName['_']= {returns: 'void',throws: [],signature: []};
 
@@ -181,6 +203,7 @@ this.assertEquals(lang.Type.$VOID,lang.XPClass.forName('unittests.MethodTests').
 
 
 unittests.MethodTests.prototype.operate= function MethodTests$operate(){};unittests.MethodTests.prototype.operate['/']= 'Fixture for the following two tests';unittests.MethodTests.prototype.operate['_']= {returns: 'void',throws: ['lang.IllegalStateException'],signature: []};
+
 
 
 

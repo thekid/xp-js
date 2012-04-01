@@ -176,6 +176,8 @@ uses(
   'lang.Type',
   'lang.XPClass',
   'lang.Primitive',
+  'lang.ArrayType',
+  'lang.MapType',
   'lang.NullPointerException',
   'lang.IllegalAccessException',
   'lang.IllegalArgumentException',

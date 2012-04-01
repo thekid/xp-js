@@ -20,7 +20,7 @@ public class MethodTests extends TestCase {
    * Fixture
    *
    */
-  protected void uniqueName(parent $instance, string $prefix) {
+  protected string[] nameVariants(parent $instance, string $prefix) {
   }
 
   /**
@@ -47,7 +47,7 @@ public class MethodTests extends TestCase {
    */
   [@test]
   public void fixtureNumParameters() {
-    $this.assertEquals(2, self::class.getMethod('uniqueName').numParameters());
+    $this.assertEquals(2, self::class.getMethod('nameVariants').numParameters());
   }
 
   /**
@@ -78,7 +78,7 @@ public class MethodTests extends TestCase {
    */
   [@test]
   public void fixtureFirstParameter() {
-    $params= self::class.getMethod('uniqueName').getParameters();
+    $params= self::class.getMethod('nameVariants').getParameters();
     $this.assertEquals(2, $params.length);
     $this.assertEquals('instance', $params[0].getName());
     $this.assertEquals('unittest.TestCase', $params[0].getTypeName());
@@ -91,7 +91,7 @@ public class MethodTests extends TestCase {
    */
   [@test]
   public void fixtureSecondParameters() {
-    $params= self::class.getMethod('uniqueName').getParameters();
+    $params= self::class.getMethod('nameVariants').getParameters();
     $this.assertEquals(2, $params.length);
     $this.assertEquals('prefix', $params[1].getName());
     $this.assertEquals('string', $params[1].getTypeName());
@@ -126,6 +126,26 @@ public class MethodTests extends TestCase {
   [@test]
   public void noArgsMethodGetNonExistantParameters() {
     $this.assertNull($this.noArgsMethod.getParameter(0));
+  }
+
+  /**
+   * Tests getReturnTypeName()
+   *
+   */
+  [@test]
+  public void arrayReturnTypeName() {
+    $this.assertEquals('string[]', self::class.getMethod('nameVariants').getReturnTypeName());
+  }
+
+  /**
+   * Tests getReturnType()
+   *
+   */
+  [@test]
+  public void arrayReturnType() {
+    $t= self::class.getMethod('nameVariants').getReturnType();
+    $this.assertInstanceOf('lang.ArrayType', $t);
+    $this.assertEquals('string', $t.componentType());
   }
   
   /**
