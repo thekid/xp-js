@@ -148,11 +148,12 @@ command:
 ```sh
 $ node tools/node.js Unittest unittests.*
 [........................................................................
-..]
+..............]
 
-OK: 74 run, 74 succeeded, 0 failed
-Memory used: 12960 kB
-Time taken: 0.022 sec(s)
+OK: 86 run, 86 succeeded, 0 failed
+Memory used: 12232 kB
+Time taken: 0.027 sec(s)
+
 ```
 
 The tests are written in XP language. Any changes made to the `*.xp`
