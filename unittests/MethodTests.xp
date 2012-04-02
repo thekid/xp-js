@@ -7,6 +7,7 @@ package unittests;
 
 import unittest.TestCase;
 import lang.reflect.Method;
+import lang.reflect.Modifiers;
 
 /**
  * Test lang.reflect.Method class
@@ -21,6 +22,114 @@ public class MethodTests extends TestCase {
    *
    */
   protected string[] nameVariants(parent $instance, string $prefix) {
+  }
+
+  /**
+   * Tests getName()
+   *
+   */
+  [@test]
+  public void methodName() {
+    $this.assertEquals('hashCode', $this.noArgsMethod.getName());
+  }
+
+  /**
+   * Tests getComment()
+   *
+   */
+  [@test]
+  public void methodComment() {
+    $this.assertEquals('Fixture', $this.getClass().getMethod('nameVariants').getComment());
+  }
+
+  /**
+   * Tests hasAnnotations()
+   *
+   */
+  [@test]
+  public void noArgsMethodHasNoAnnotations() {
+    $this.assertFalse($this.noArgsMethod.hasAnnotations());
+  }
+
+  /**
+   * Tests hasAnnotations()
+   *
+   */
+  [@test]
+  public void noArgsMethodDoesNotHaveNonExistantAnnotation() {
+    $this.assertFalse($this.noArgsMethod.hasAnnotation('any'));
+  }
+
+  /**
+   * Tests getAnnotations()
+   *
+   */
+  [@test]
+  public void noArgsMethodAnnotations() {
+    $this.assertEquals([], $this.noArgsMethod.getAnnotations());
+  }
+
+  /**
+   * Tests getAnnotation()
+   *
+   */
+  [@test, @expect('lang.ElementNotFoundException')]
+  public void noArgsMethodNonExistantAnnotation() {
+    $this.noArgsMethod.getAnnotation('any');
+  }
+
+  /**
+   * Tests hasAnnotations()
+   *
+   */
+  [@test]
+  public void thisMethodHasAnnotations() {
+    $this.assertTrue($this.getClass().getMethod($this.name).hasAnnotations());
+  }
+
+  /**
+   * Tests hasAnnotations()
+   *
+   */
+  [@test]
+  public void thisMethodHasTestAnnotation() {
+    $this.assertTrue($this.getClass().getMethod($this.name).hasAnnotation('test'));
+  }
+
+  /**
+   * Tests getAnnotations()
+   *
+   */
+  [@test]
+  public void thisMethodsAnnotations() {
+    $this.assertEquals([test : null], $this.getClass().getMethod($this.name).getAnnotations());
+  }
+
+  /**
+   * Tests getAnnotation()
+   *
+   */
+  [@test]
+  public void fixtureMethodNonExistantAnnotation() {
+    $this.assertNull($this.getClass().getMethod($this.name).getAnnotation('test'));
+  }
+
+  /**
+   * Tests getModifiers()
+   *
+   */
+  [@test]
+  public void objectHashCodeMethodIsPublic() {
+    $this.assertTrue(Modifiers::isPublic($this.noArgsMethod.getModifiers()));
+  }
+
+  /**
+   * Tests getModifiers()
+   *
+   */
+  [@test]
+  public void objectHashCodePublic() {
+    $this.assertEquals(['public'], Modifiers::namesOf($this.noArgsMethod.getModifiers()));
   }
 
   /**
@@ -47,7 +156,7 @@ public class MethodTests extends TestCase {
    */
   [@test]
   public void fixtureNumParameters() {
-    $this.assertEquals(2, self::class.getMethod('nameVariants').numParameters());
+    $this.assertEquals(2, $this.getClass().getMethod('nameVariants').numParameters());
   }
 
   /**
@@ -78,7 +187,7 @@ public class MethodTests extends TestCase {
    */
   [@test]
   public void fixtureFirstParameter() {
-    $params= self::class.getMethod('nameVariants').getParameters();
+    $params= $this.getClass().getMethod('nameVariants').getParameters();
     $this.assertEquals(2, $params.length);
     $this.assertEquals('instance', $params[0].getName());
     $this.assertEquals('unittest.TestCase', $params[0].getTypeName());
@@ -91,7 +200,7 @@ public class MethodTests extends TestCase {
    */
   [@test]
   public void fixtureSecondParameters() {
-    $params= self::class.getMethod('nameVariants').getParameters();
+    $params= $this.getClass().getMethod('nameVariants').getParameters();
     $this.assertEquals(2, $params.length);
     $this.assertEquals('prefix', $params[1].getName());
     $this.assertEquals('string', $params[1].getTypeName());
@@ -134,7 +243,7 @@ public class MethodTests extends TestCase {
    */
   [@test]
   public void arrayReturnTypeName() {
-    $this.assertEquals('string[]', self::class.getMethod('nameVariants').getReturnTypeName());
+    $this.assertEquals('string[]', $this.getClass().getMethod('nameVariants').getReturnTypeName());
   }
 
   /**
@@ -143,7 +252,7 @@ public class MethodTests extends TestCase {
    */
   [@test]
   public void arrayReturnType() {
-    $t= self::class.getMethod('nameVariants').getReturnType();
+    $t= $this.getClass().getMethod('nameVariants').getReturnType();
     $this.assertInstanceOf('lang.ArrayType', $t);
     $this.assertEquals('string', $t.componentType());
   }
@@ -161,7 +270,7 @@ public class MethodTests extends TestCase {
    */
   [@test]
   public void variableReturnTypeName() {
-    $this.assertEquals('var', self::class.getMethod('variableReturnTypeFixture').getReturnTypeName());
+    $this.assertEquals('var', $this.getClass().getMethod('variableReturnTypeFixture').getReturnTypeName());
   }
 
   /**
@@ -170,7 +279,7 @@ public class MethodTests extends TestCase {
    */
   [@test]
   public void variableReturnType() {
-    $this.assertEquals(Type::$VAR, self::class.getMethod('variableReturnTypeFixture').getReturnType());
+    $this.assertEquals(Type::$VAR, $this.getClass().getMethod('variableReturnTypeFixture').getReturnType());
   }
 
   /**
@@ -186,7 +295,7 @@ public class MethodTests extends TestCase {
    */
   [@test]
   public void voidReturnTypeName() {
-    $this.assertEquals('void', self::class.getMethod('voidReturnTypeFixture').getReturnTypeName());
+    $this.assertEquals('void', $this.getClass().getMethod('voidReturnTypeFixture').getReturnTypeName());
   }
 
   /**
@@ -195,7 +304,7 @@ public class MethodTests extends TestCase {
    */
   [@test]
   public void voidReturnType() {
-    $this.assertEquals(Type::$VOID, self::class.getMethod('voidReturnTypeFixture').getReturnType());
+    $this.assertEquals(Type::$VOID, $this.getClass().getMethod('voidReturnTypeFixture').getReturnType());
   }
 
   /**
@@ -222,7 +331,7 @@ public class MethodTests extends TestCase {
   public void operateExceptionNames() {
     $this.assertEquals(
       ['lang.IllegalStateException'], 
-      self::class.getMethod('operate').getExceptionNames()
+      $this.getClass().getMethod('operate').getExceptionNames()
     );
   }
 
@@ -243,7 +352,7 @@ public class MethodTests extends TestCase {
   public void operateExceptionTypes() {
     $this.assertEquals(
       [lang.IllegalStateException::class], 
-      self::class.getMethod('operate').getExceptionTypes()
+      $this.getClass().getMethod('operate').getExceptionTypes()
     );
   }
 }

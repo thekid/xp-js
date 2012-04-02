@@ -45,8 +45,10 @@ lang.XPClass.prototype.hasMethod = function XPClass$hasMethod(name) {
 }
 
 lang.XPClass.prototype.getMethod = function XPClass$getMethod(name) {
-  if (name in this.$reflect || name in this.$reflect.prototype) {
-    return new lang.reflect.Method(this, name);
+  if (name in this.$reflect) {
+    return new lang.reflect.Method(this, name, lang.reflect.Modifiers.PUBLIC | lang.reflect.Modifiers.STATIC);
+  } else if (name in this.$reflect.prototype) {
+    return new lang.reflect.Method(this, name, lang.reflect.Modifiers.PUBLIC);
   }
   throw new lang.ElementNotFoundException('No such method ' + this.$name + '::' + name);
 }
@@ -54,6 +56,7 @@ lang.XPClass.prototype.getMethod = function XPClass$getMethod(name) {
 lang.XPClass.prototype.getMethods = function XPClass$getMethods() {
   var methods = new Array();
   var gather = function(self, object, parent, modifiers) {
+    modifiers |= lang.reflect.Modifiers.PUBLIC;
     for (var member in object) {
       if ((parent || object.hasOwnProperty(member)) && typeof(object[member]) === 'function') {
         methods.push(new lang.reflect.Method(self, member, modifiers));

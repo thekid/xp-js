@@ -20,13 +20,17 @@ lang.reflect.Method.prototype.getName = function Method$getName() {
   return this.$name;
 }
 
+lang.reflect.Method.prototype.getModifiers = function Method$getModifiers() {
+  return this.$modifiers;
+}
+
 lang.reflect.Method.prototype.toString = function Method$toString() {
   var p= this.getParameters();
   var s= '';
   for (var i= 0; i < p.length; i++) {
     s+= ', ' + p[i].getTypeName() + ' $' + p[i].getName();
   }
-  return 'public ' + this.getReturnTypeName() + ' ' + (this.$modifiers & 1 ? 'static ' : '') + this.$name + '(' + s.substring(2) + ')';
+  return lang.reflect.Modifiers.stringOf(this.$modifiers) + ' ' + this.getReturnTypeName() + ' ' + this.$name + '(' + s.substring(2) + ')';
 }
 
 lang.reflect.Method.prototype.getParameters = function Method$getParameters() {
@@ -96,6 +100,13 @@ lang.reflect.Method.prototype.getAnnotation = function Method$getAnnotation(name
     throw new lang.ElementNotFoundException('No such annotation "' + name + '"');
   }
   return this.$reflect['@'][name];
+}
+
+lang.reflect.Method.prototype.getAnnotations = function Method$getAnnotations() {
+  if (this.hasAnnotations()) {
+    return this.$reflect['@'];
+  }
+  return [];
 }
 
 lang.reflect.Method.prototype.getComment = function Method$getComment() {
