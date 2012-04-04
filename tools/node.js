@@ -1,30 +1,17 @@
-
-
-
-
-
-
 var fs = require('fs');
 var path= require('path');
 var os= require('os');
-
-
 var argv= process.argv;
 argv.shift();
 argv.shift();
-
-
 global.fs = {
   DIRECTORY_SEPARATOR : path.normalize('/'),
-
   file : function(uri) {
     return fs.readFileSync(uri).toString().split("\n");
   },
-
   exists : function(uri) {
     return path.existsSync(uri);
   },
-
   glob : function(uri, pattern) {
     var filtered = [];
     if (path.existsSync(uri)) {
@@ -38,8 +25,6 @@ global.fs = {
     return filtered;
   }
 };
-
-
 global.out= {
   write : function(data) {
     process.stdout.write(data + "");
@@ -48,23 +33,18 @@ global.out= {
     process.stdout.write(data === undefined ? "\n" : data + "\n");
   },
 };
-
-
 process.runtime = function() {
   return 'Node ' + process.versions.node + ' & V8 ' + process.versions.v8;
 }
 process.os = function() {
   return os.type() + ' ' + os.release() + ' (' + os.arch() + ')';
 }
-
-
 global.execution = {
   trace : function(error) {
     Error.captureStackTrace(error, lang.Throwable);
     error.stack;
   }
 };
-
 Error.prepareStackTrace = function(error, structured) {
   for (var i = 0; i < structured.length; i++) {
     var f= structured[i].getFunction();
@@ -72,7 +52,6 @@ Error.prepareStackTrace = function(error, structured) {
     for (var j = 0; j < f.arguments.length; j++) {
       a += ', ' + lang.Throwable.stringOf(f.arguments[j]);
     }
-
     error.$stacktrace.push(
       structured[i].getFunctionName().replace(/\$/, '.') +
       '(' + a.substring(2) + ')' +
@@ -80,18 +59,13 @@ Error.prepareStackTrace = function(error, structured) {
       (structured[i].isNative() ? '(native)' : path.basename(structured[i].getFileName()))
       + ']'
     );
-
     if (f === global.__main) break;
   }
   return '';
 };
-
-
 include = require;
-
-
 global.native = require('./' + "php.default.commonjs.min");
-global.version= "0.8.6";
+global.version= "0.8.7";
 function scanpath(paths, home) {
   var inc= [];
   for (p= 0; p < paths.length; p++) {
