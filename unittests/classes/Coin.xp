@@ -1,0 +1,47 @@
+package unittests.classes;
+
+/**
+ * Coin enumeration. Shows off:
+ * 
+ * <ul>
+ *   <li>Enum syntax</li>
+ * </ul>
+ */
+public enum Coin {
+  penny(1), nickel(2), dime(10), quarter(25);
+
+  /**
+   * Return this coin's color
+   *
+   */
+  public string color() {
+    switch ($this) {
+      case self::$penny: return 'copper';
+      case self::$nickel: return 'nickel';
+      case self::$dime: case self::$quarter: return 'silver';
+    }
+  }
+
+  /**
+   * Return this coin's value in cent
+   *
+   */
+  public int value() {
+    return $this.ordinal;
+  }
+ 
+  /**
+   * Entry point
+   *
+   */
+  public static void main(string[] $args) {
+    foreach ($coin in Coin::values()) {
+      util.cmd.Console::writeLinef(
+        '- A %s\'s color is %s and it\'s worth %d¢', 
+        $coin.name(),
+        $coin.color(), 
+        $coin.value()
+      );
+    }
+  } 
+}
