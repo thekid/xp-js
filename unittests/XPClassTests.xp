@@ -334,4 +334,49 @@ public class XPClassTests extends TestCase {
       $this.getClass().getMethod($this.name).getComment()
     );
   }
+
+  /**
+   * Tests isSubclassOf()
+   *
+   */
+  [@test]
+  public void thisIsSubclassOfObject() {
+    $this.assertTrue($this.getClass().isSubclassOf('lang.Object'));
+  }
+
+  /**
+   * Tests isSubclassOf()
+   *
+   */
+  [@test]
+  public void thisIsSubclassOfObjectClass() {
+    $this.assertTrue($this.getClass().isSubclassOf(Object::class));
+  }
+
+  /**
+   * Tests isSubclassOf()
+   *
+   */
+  [@test]
+  public void thisIsSubclassOfGenericClass() {
+    $this.assertTrue($this.getClass().isSubclassOf(Generic::class));
+  }
+
+  /**
+   * Tests isSubclassOf()
+   *
+   */
+  [@test]
+  public void thisIsSubclassOfParentClass() {
+    $this.assertTrue($this.getClass().isSubclassOf($this.getClass().getParentclass()));
+  }
+
+  /**
+   * Tests isSubclassOf()
+   *
+   */
+  [@test]
+  public void thisIsNotSubclassOfSelfClass() {
+    $this.assertFalse($this.getClass().isSubclassOf(self::class));
+  }
 }

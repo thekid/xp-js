@@ -40,6 +40,24 @@ lang.XPClass.prototype.getParentclass = function XPClass$getParentclass() {
   ;
 }
 
+lang.XPClass.prototype.isSubclassOf = function XPClass$isSubclassOf($cmp) {
+  if ($cmp instanceof lang.XPClass) {
+    $cmp = $cmp.$reflect;
+  } else if ('string' === typeof($cmp)) {
+    $cmp = global[$cmp];
+  }
+
+  // Check prototype chain and interfaces
+  return (
+    $cmp.prototype.isPrototypeOf(this.$reflect.prototype) ||
+    this.$reflect['<'].indexOf($cmp) >= 0
+  );
+}
+
+lang.XPClass.prototype.isEnum = function XPClass$isEnum() {
+  return this.isSubclassOf(lang.Enum);
+}
+
 lang.XPClass.prototype.hasMethod = function XPClass$hasMethod(name) {
   return (name in this.$reflect || name in this.$reflect.prototype);
 }

@@ -331,4 +331,50 @@ this.assertEquals('Test lang.XPClass',this.getClass().getComment());};unittests.
 unittests.XPClassTests.prototype.thisMethodsComment= function XPClassTests$thisMethodsComment(){
 this.assertEquals(
 'Tests Method::getComment()',
-this.getClass().getMethod(this.$name).getComment());};unittests.XPClassTests.prototype.thisMethodsComment['@']= {test:null};unittests.XPClassTests.prototype.thisMethodsComment['/']= "Tests Method::getComment()";unittests.XPClassTests.prototype.thisMethodsComment['_']= {returns: 'void',throws: [],signature: []};unittests.XPClassTests['/']= "Test lang.XPClass";
+this.getClass().getMethod(this.$name).getComment());};unittests.XPClassTests.prototype.thisMethodsComment['@']= {test:null};unittests.XPClassTests.prototype.thisMethodsComment['/']= "Tests Method::getComment()";unittests.XPClassTests.prototype.thisMethodsComment['_']= {returns: 'void',throws: [],signature: []};
+
+
+
+
+
+
+
+
+unittests.XPClassTests.prototype.thisIsSubclassOfObject= function XPClassTests$thisIsSubclassOfObject(){
+this.assertTrue(this.getClass().isSubclassOf('lang.Object'));};unittests.XPClassTests.prototype.thisIsSubclassOfObject['@']= {test:null};unittests.XPClassTests.prototype.thisIsSubclassOfObject['/']= "Tests isSubclassOf()";unittests.XPClassTests.prototype.thisIsSubclassOfObject['_']= {returns: 'void',throws: [],signature: []};
+
+
+
+
+
+
+
+unittests.XPClassTests.prototype.thisIsSubclassOfObjectClass= function XPClassTests$thisIsSubclassOfObjectClass(){
+this.assertTrue(this.getClass().isSubclassOf(lang.XPClass.forName('lang.Object')));};unittests.XPClassTests.prototype.thisIsSubclassOfObjectClass['@']= {test:null};unittests.XPClassTests.prototype.thisIsSubclassOfObjectClass['/']= "Tests isSubclassOf()";unittests.XPClassTests.prototype.thisIsSubclassOfObjectClass['_']= {returns: 'void',throws: [],signature: []};
+
+
+
+
+
+
+
+unittests.XPClassTests.prototype.thisIsSubclassOfGenericClass= function XPClassTests$thisIsSubclassOfGenericClass(){
+this.assertTrue(this.getClass().isSubclassOf(lang.XPClass.forName('lang.Generic')));};unittests.XPClassTests.prototype.thisIsSubclassOfGenericClass['@']= {test:null};unittests.XPClassTests.prototype.thisIsSubclassOfGenericClass['/']= "Tests isSubclassOf()";unittests.XPClassTests.prototype.thisIsSubclassOfGenericClass['_']= {returns: 'void',throws: [],signature: []};
+
+
+
+
+
+
+
+unittests.XPClassTests.prototype.thisIsSubclassOfParentClass= function XPClassTests$thisIsSubclassOfParentClass(){
+this.assertTrue(this.getClass().isSubclassOf(this.getClass().getParentclass()));};unittests.XPClassTests.prototype.thisIsSubclassOfParentClass['@']= {test:null};unittests.XPClassTests.prototype.thisIsSubclassOfParentClass['/']= "Tests isSubclassOf()";unittests.XPClassTests.prototype.thisIsSubclassOfParentClass['_']= {returns: 'void',throws: [],signature: []};
+
+
+
+
+
+
+
+unittests.XPClassTests.prototype.thisIsNotSubclassOfSelfClass= function XPClassTests$thisIsNotSubclassOfSelfClass(){
+this.assertFalse(this.getClass().isSubclassOf(lang.XPClass.forName('unittests.XPClassTests')));};unittests.XPClassTests.prototype.thisIsNotSubclassOfSelfClass['@']= {test:null};unittests.XPClassTests.prototype.thisIsNotSubclassOfSelfClass['/']= "Tests isSubclassOf()";unittests.XPClassTests.prototype.thisIsNotSubclassOfSelfClass['_']= {returns: 'void',throws: [],signature: []};unittests.XPClassTests['/']= "Test lang.XPClass";
