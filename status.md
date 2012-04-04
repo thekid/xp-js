@@ -27,7 +27,7 @@ These features behave the same:
 * Stack traces (in node.js, WSH missing file / line)
 * Type information for methods and their signature
 * Type system - no primitives, map and array types
-* Typesafe enums including abstract ones
+* Typesafe enums including abstract ones, and enum reflection
 
 Supported by compilation
 ------------------------
@@ -45,7 +45,6 @@ These features are not complete yet:
 * Class reflection
 * Package reflection
 * Interfaces - no runtime checks, inheritance missing
-* Typesafe enums - reflection
 
 Missing features
 ----------------
