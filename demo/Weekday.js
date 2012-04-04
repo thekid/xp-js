@@ -10,4 +10,4 @@ Object.defineProperty(demo.Weekday,'$Saturday',{ writeable : false, value : new 
 Object.defineProperty(demo.Weekday,'$Sunday',{ writeable : false, value : new demo.Weekday(6,'Sunday')});
 
 demo.Weekday.prototype.isWeekend= function Weekday$isWeekend(){
-return this.$ordinal > 4;};demo.Weekday.prototype.isWeekend['_']= {returns: 'bool',throws: [],signature: []};demo.Weekday.values= function Weekday$values(){return lang.Enum.membersOf(this);};demo.Weekday.values['/']= "erate";demo.Weekday.values['_']= {returns: 'demo.Weekday[]',throws: [],signature: []};
+return this.$ordinal > demo.Weekday.$Friday.$ordinal;};demo.Weekday.prototype.isWeekend['_']= {returns: 'bool',throws: [],signature: []};demo.Weekday.values= function Weekday$values(){return lang.Enum.membersOf(this);};demo.Weekday.values['/']= "erate";demo.Weekday.values['_']= {returns: 'demo.Weekday[]',throws: [],signature: []};
