@@ -14,6 +14,9 @@ lang.Enum.membersOf = function Enum$membersOf(self) {
 }
 
 lang.Enum.valuesOf = function Enum$valuesOf($class) {
+  if (!$class.isEnum()) {
+    throw new lang.IllegalArgumentException($class.getName() + ' is not an enum');
+  }
   var members = lang.Enum.membersOf($class.$reflect);
 
   // The members array is sorted by ordinal, but has space
@@ -26,6 +29,10 @@ lang.Enum.valuesOf = function Enum$valuesOf($class) {
 }
 
 lang.Enum.valueOf = function Enum$valueOf($class, $name) {
+  if (!$class.isEnum()) {
+    throw new lang.IllegalArgumentException($class.getName() + ' is not an enum');
+  }
+
   var prop= $class.$reflect['$' + $name];
   if (prop instanceof lang.Enum) return prop;
   throw new lang.IllegalArgumentException('No such member "' + $name + '" in ' + $class.getName());
