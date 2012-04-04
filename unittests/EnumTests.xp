@@ -1,0 +1,94 @@
+/* This class is part of the XP framework
+ *
+ * $Id$ 
+ */
+
+package unittests;
+
+import unittest.TestCase;
+import unittests.classes.Coin;
+
+/**
+ * Test enums
+ *
+ */
+public class EnumTests extends TestCase {
+  protected XPClass $fixture;
+
+  /**
+   * Sets up fixture
+   *
+   */
+  public void setUp() {
+    $this.fixture= Coin::class;
+  }
+
+  /**
+   * Tests XPClass::isEnum()
+   *
+   */
+  [@test]
+  public void thisIsNotAnEnum() {
+    $this.assertFalse($this.getClass().isEnum());
+  }
+
+  /**
+   * Tests XPClass::isEnum()
+   *
+   */
+  [@test]
+  public void fixtureIsAnEnum() {
+    $this.assertTrue($this.fixture.isEnum());
+  }
+
+  /**
+   * Tests Enum::valuesOf()
+   *
+   */
+  [@test]
+  public void fixtureValues() {
+    $this.assertEquals(
+      [Coin::$penny, Coin::$nickel, Coin::$dime, Coin::$quarter],
+      Enum::valuesOf($this.fixture)
+    );
+  }
+
+  /**
+   * Tests Enum::valuesOf()
+   *
+   */
+  [@test, @expect('lang.IllegalArgumentException')]
+  public void thisValues() {
+    Enum::valuesOf($this.getClass());
+  }
+
+  /**
+   * Tests Enum::valueOf()
+   *
+   */
+  [@test]
+  public void fixturePennyValue() {
+    $this.assertEquals(
+      Coin::$penny,
+      Enum::valueOf($this.fixture, 'penny')
+    );
+  }
+
+  /**
+   * Tests Enum::valueOf()
+   *
+   */
+  [@test, @expect('lang.IllegalArgumentException')]
+  public void fixtureNonExistantValue() {
+    Enum::valueOf($this.fixture, '@@non-existant@@');
+  }
+
+  /**
+   * Tests Enum::valueOf()
+   *
+   */
+  [@test, @expect('lang.IllegalArgumentException')]
+  public void thisValue() {
+    Enum::valueOf($this.getClass(), 'any');
+  }
+}
