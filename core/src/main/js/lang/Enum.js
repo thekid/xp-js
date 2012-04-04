@@ -13,6 +13,24 @@ lang.Enum.membersOf = function Enum$membersOf(self) {
   return result;
 }
 
+lang.Enum.valuesOf = function Enum$valuesOf($class) {
+  var members = lang.Enum.membersOf($class.$reflect);
+
+  // The members array is sorted by ordinal, but has space
+  // e.g. "a,b,,,,,c,d" if the ordinals are not continuous 
+  result= [];
+  for (var member in members) {
+    result.push(members[member]);
+  }
+  return result;
+}
+
+lang.Enum.valueOf = function Enum$valueOf($class, $name) {
+  var prop= $class.$reflect['$' + $name];
+  if (prop instanceof lang.Enum) return prop;
+  throw new lang.IllegalArgumentException('No such member "' + $name + '" in ' + $class.getName());
+}
+
 lang.Enum.prototype.name = function Enum$name() {
   return this.$name;
 }
