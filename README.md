@@ -148,11 +148,11 @@ command:
 ```sh
 $ node tools/node.js Unittest unittests.*
 [........................................................................
-..............]
+........................]
 
-OK: 86 run, 86 succeeded, 0 failed
-Memory used: 12232 kB
-Time taken: 0.027 sec(s)
+OK: 96 run, 96 succeeded, 0 failed
+Memory used: 12076 kB
+Time taken: 0.026 sec(s)
 
 ```
 
