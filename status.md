@@ -28,6 +28,7 @@ These features behave the same:
 * Type information for methods and their signature
 * Type system - no primitives, map and array types
 * Typesafe enums including abstract ones, and enum reflection
+* Thrown exceptions metadata
 
 Supported by compilation
 ------------------------
@@ -56,7 +57,6 @@ These features are not present:
 * Abstract
 * Final
 * Type checks
-* Thrown exceptions metadata
 * Runtime class definition
 * Constructor reflection
 * xp::null

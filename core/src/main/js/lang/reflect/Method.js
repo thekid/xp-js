@@ -30,7 +30,12 @@ lang.reflect.Method.prototype.toString = function Method$toString() {
   for (var i= 0; i < p.length; i++) {
     s+= ', ' + p[i].getTypeName() + ' $' + p[i].getName();
   }
-  return lang.reflect.Modifiers.stringOf(this.$modifiers) + ' ' + this.getReturnTypeName() + ' ' + this.$name + '(' + s.substring(2) + ')';
+  var n= this.getExceptionNames();
+  var e= '';
+  for (var i= 0; i < n.length; i++) {
+    e+= ', ' + n[i];
+  }
+  return lang.reflect.Modifiers.stringOf(this.$modifiers) + ' ' + this.getReturnTypeName() + ' ' + this.$name + '(' + s.substring(2) + ')' + (e ? ' throws ' + e.substring(2) : '');
 }
 
 lang.reflect.Method.prototype.getParameters = function Method$getParameters() {

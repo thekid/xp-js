@@ -2,7 +2,7 @@ import native standard.ucfirst;
 
 public class Hello {
 
-  public static void main(string[] $args) {
+  public static void main(string[] $args) throws Throwable {
     if ($args.length < 1) {
       throw new IllegalArgumentException('Argument required');
     }
