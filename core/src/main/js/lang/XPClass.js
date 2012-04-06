@@ -88,12 +88,13 @@ lang.XPClass.prototype.getMethods = function XPClass$getMethods() {
 }
 
 lang.XPClass.prototype.hasField = function XPClass$hasField(name) {
-  name = '$' + name;
-  return (name in this.$reflect || name in this.$reflect.prototype);
+  var l = '$' + name;
+  return (l in this.$reflect || l in this.$reflect.prototype);
 }
 
 lang.XPClass.prototype.getField = function XPClass$getField(name) {
-  if (name in this.$reflect || name in this.$reflect.prototype) {
+  var l = '$' + name;
+  if (l in this.$reflect || l in this.$reflect.prototype) {
     return new lang.reflect.Field(this, name);
   }
   throw new lang.ElementNotFoundException('No such field ' + this.$name + '::' + name);
