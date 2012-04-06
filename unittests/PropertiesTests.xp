@@ -1,0 +1,61 @@
+/* This class is part of the XP framework
+ *
+ * $Id$ 
+ */
+
+package unittests;
+
+import unittest.TestCase;
+
+/**
+ * Test properties
+ *
+ */
+public class PropertiesTests extends TestCase {
+  protected PropertiesFixture $fixture;
+  
+  /**
+   * Creates fixture
+   *
+   */
+  public void setUp() {
+    $this.fixture= new PropertiesFixture();
+  }
+
+  /**
+   * Tests name.get
+   *
+   */
+  [@test]
+  public void readName() {
+    $this.assertEquals('Test', $this.fixture.name);
+  }
+
+  /**
+   * Tests name.set
+   *
+   */
+  [@test]
+  public void writeName() {
+    $this.fixture.name= 'overwritten';
+    $this.assertEquals('overwritten', $this.fixture.name);
+  }
+
+  /**
+   * Tests name.get
+   *
+   */
+  [@test]
+  public void readId() {
+    $this.assertEquals(6100, $this.fixture.id);
+  }
+
+  /**
+   * Tests name.set
+   *
+   */
+  [@test, @expect('lang.IllegalAccessException')]
+  public void writeId() {
+    $this.fixture.id= 0;
+  }
+}

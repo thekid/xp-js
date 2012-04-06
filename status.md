@@ -29,6 +29,7 @@ These features behave the same:
 * Type system - no primitives, map and array types
 * Typesafe enums including abstract ones, and enum reflection
 * Thrown exceptions metadata
+* Properties
 
 Supported by compilation
 ------------------------
@@ -74,7 +75,6 @@ Not supported by compiler
 These features are missing in the compiler:
 
 * Lambdas
-* Properties
 * Operators
 * Indexers
 * Dynamic instanceof (`instanceof $t`)

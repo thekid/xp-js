@@ -1,6 +1,13 @@
+
+
+
+
+
+
 var global = this;
 var fso = WScript.CreateObject('Scripting.FileSystemObject');
 var wsh = WScript.CreateObject('WScript.Shell');
+
 var _mgmts = null;
 function winmgmts() {
   if (null === _mgmts) {
@@ -8,18 +15,25 @@ function winmgmts() {
   }
   return _mgmts;
 }
+
+
 var argv = new Array();
 for (var i = 0; i < WScript.Arguments.Count(); i++) {
   argv.push(WScript.Arguments.Item(i));
 }
+
+
 global.fs = {
   DIRECTORY_SEPARATOR : '\\',
+
   file : function(uri) {
     return fso.OpenTextFile(uri, 1).ReadAll().split("\n");
   },
+
   exists : function(uri) {
     return fso.FileExists(uri);
   },
+
   glob : function(uri, pattern) {
     var filtered= [];
     if (fso.FolderExists(uri)) {
@@ -35,6 +49,7 @@ global.fs = {
     return filtered;
   }
 };
+
 var path = { };
 path.join = function() {
   var path = '';
@@ -43,6 +58,8 @@ path.join = function() {
   }
   return path.substring(1);
 }
+
+
 var process = { };
 process.cwd = function() {
   return wsh.CurrentDirectory;
@@ -57,7 +74,10 @@ process.os = function() {
 process.memoryUsage = function() {
   return { rss: undefined };
 }
+
 process.env = wsh.Environment;
+
+
 global.execution = {
   trace : function(error) {
     var current= arguments.callee.caller.caller;
@@ -75,6 +95,8 @@ global.execution = {
     }
   }
 };
+
+
 global.out= {
   write : function(data) {
     WScript.StdOut.Write(data);
@@ -84,6 +106,8 @@ global.out= {
     WScript.StdOut.WriteBlankLines(1);
   }
 };
+
+
 var include = function(filename) {
   try {
     eval(fso.OpenTextFile(filename, 1).ReadAll());
@@ -91,11 +115,14 @@ var include = function(filename) {
     throw new Error(filename + ': ' + e.message);
   }
 }
+
+
 if (typeof(Object.defineProperty) === 'undefined') {
   Object.defineProperty= function(object, propertyname, descriptor) {
     object[propertyname]= descriptor.value;
   }
 }
+
 if (typeof(Object.getOwnPropertyNames) === 'undefined') {
   Object.getOwnPropertyNames= function(object) {
     var names = [];
@@ -109,6 +136,7 @@ if (typeof(Object.getOwnPropertyNames) === 'undefined') {
     return names;
   }
 }
+
 if (typeof(Array.prototype.indexOf) === 'undefined') {
   Array.prototype.indexOf= function(val) {
     for (var i in this) {
@@ -117,6 +145,7 @@ if (typeof(Array.prototype.indexOf) === 'undefined') {
     return -1;
   }
 }
+
 if (typeof(Array.prototype.forEach) === 'undefined') {
   Array.prototype.forEach= function(func, self) {
     for (var i = 0; i < this.length; i++) {
@@ -124,6 +153,7 @@ if (typeof(Array.prototype.forEach) === 'undefined') {
     }
   }
 }
+
 global.native = function() {
   eval(
     'var exports = {}; ' +
@@ -131,7 +161,7 @@ global.native = function() {
   );
   return exports;
 }();
-global.version= "0.8.7";
+global.version= "0.8.8";
 function scanpath(paths, home) {
   var inc= [];
   for (p= 0; p < paths.length; p++) {
