@@ -137,7 +137,7 @@ Contributing
 ------------
 If you would like to contribute, you can do it the GitHub way by opening
 issues or pull requests. To see where help is needed, check the 
-[implementation status document](https://github.com/thekid/xp-js/blob/master/status.md)
+[implementation status document](https://github.com/thekid/xp-js/blob/master/docs/status.md)
 
 
 * * *
