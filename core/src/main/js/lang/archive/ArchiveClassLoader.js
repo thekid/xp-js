@@ -3,6 +3,15 @@ lang.archive.ArchiveClassLoader = define('lang.archive.ArchiveClassLoader', 'lan
   this.$xar= null;
 });
 
+lang.archive.ArchiveClassLoader.$instances= {};
+
+lang.archive.ArchiveClassLoader.instanceFor= function ArchiveClassLoader$instanceFor(uri) {
+  if (lang.archive.ArchiveClassLoader.$instances[uri] === undefined) {
+    lang.archive.ArchiveClassLoader.$instances[uri]= new lang.archive.ArchiveClassLoader(uri);
+  }
+  return lang.archive.ArchiveClassLoader.$instances[uri];
+}
+
 lang.archive.ArchiveClassLoader.prototype.providesClass = function ArchiveClassLoader$providesClass($class) {
   if (this.$xar === null) {
     this.$xar= global.xar.acquire(this.$path);
@@ -33,7 +42,7 @@ lang.archive.ArchiveClassLoader.prototype.loadClass0 = function ArchiveClassLoad
   if (typeof(it[names[n]]['__static']) === 'function') {
     it[names[n]].__static();
   }
-  
+  global[$class]['.']= ['lang.archive.ArchiveClassLoader', this.$path];
   return $class;
 }
 

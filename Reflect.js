@@ -6,6 +6,7 @@ Reflect.prototype.toString = function Reflect$toString() {
 };
 
 Reflect.forClass = function  Reflect$forClass(clazz) {
+  util.cmd.Console.writeLine('@', clazz.getClassLoader());
   util.cmd.Console.write(clazz);
   if (null !== (parent= clazz.getParentclass())) {
     util.cmd.Console.writeLine(' extends ' + parent.getName() + ' {');

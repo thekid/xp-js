@@ -103,7 +103,7 @@ arguments:
 
 ```sh
 $ node tools/node.js
-XP JS Microkernel 0.9.0 { Node 0.6.14 & V8 3.6.6.24 } @ Windows_NT 6.1.7600 (ia32)
+XP JS Microkernel 0.9.1 { Node 0.6.14 & V8 3.6.6.24 } @ Windows_NT 6.1.7600 (ia32)
 Copyright (c) 2011-2012 the XP group
 lang.FileSystemClassLoader<C:\cygwin\home\friebe\devel\xp-js\core\src\main\js>
 lang.FileSystemClassLoader<C:\cygwin\home\friebe\devel\xp-js\test\src\main\js>

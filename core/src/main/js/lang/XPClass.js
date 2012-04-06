@@ -157,4 +157,8 @@ lang.XPClass.prototype.getInterfaces = function XPClass$getInterfaces(name) {
 lang.XPClass.prototype.getComment = function XPClass$getComment() {
   return this.$reflect['/'];
 }
+
+lang.XPClass.prototype.getClassLoader = function XPClass$getClassLoader() {
+  return global[this.$reflect['.'][0]].instanceFor(this.$reflect['.'][1]);
+}
 // }}}

@@ -5,14 +5,18 @@ lang.ClassLoader = define('lang.ClassLoader', 'lang.Object', function ClassLoade
 lang.ClassLoader.delegates= [];
 
 lang.ClassLoader.__static = function() {
+
+  // Set up delegates
   var delegate;
   for (var i= 0; i < global.classpath.length; i++) {
     switch (global.fs.ftype(global.classpath[i])) {
-      case 'dir':  delegate= new lang.FileSystemClassLoader(global.classpath[i]); break;
-      case 'file': delegate= new lang.archive.ArchiveClassLoader(global.classpath[i]); break;
+      case 'dir':  delegate= lang.FileSystemClassLoader.instanceFor(global.classpath[i]); break;
+      case 'file': delegate= lang.archive.ArchiveClassLoader.instanceFor(global.classpath[i]); break;
     }
     lang.ClassLoader.delegates.push(delegate);
   }
+
+  // From now on, classes can be loaded from here!
   global.loader = lang.ClassLoader.loadClass0;
 }
 

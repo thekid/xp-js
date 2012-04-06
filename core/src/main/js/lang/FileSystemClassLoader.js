@@ -2,6 +2,15 @@ lang.FileSystemClassLoader = define('lang.FileSystemClassLoader', 'lang.Object',
   this.$path= $path;
 });
 
+lang.FileSystemClassLoader.$instances= {};
+
+lang.FileSystemClassLoader.instanceFor= function FileSystemClassLoader$instanceFor(uri) {
+  if (lang.FileSystemClassLoader.$instances[uri] === undefined) {
+    lang.FileSystemClassLoader.$instances[uri]= new lang.FileSystemClassLoader(uri);
+  }
+  return lang.FileSystemClassLoader.$instances[uri];
+}
+
 lang.FileSystemClassLoader.prototype.providesClass = function FileSystemClassLoader$providesClass($class) {
   return global.fs.exists(global.fs.compose(this.$path, $class.replace(/\./g, '/') + '.js'));
 }
@@ -24,7 +33,7 @@ lang.FileSystemClassLoader.prototype.loadClass0 = function FileSystemClassLoader
   if (typeof(it[names[n]]['__static']) === 'function') {
     it[names[n]].__static();
   }
-  
+  global[$class]['.']= ['lang.FileSystemClassLoader', this.$path];
   return $class;
 }
 

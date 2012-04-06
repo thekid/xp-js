@@ -88,6 +88,8 @@ global.loader = function(name) {
     if (typeof(it[names[n]]['__static']) === 'function') {
       it[names[n]].__static();
     }
+    
+    global[name]['.']= ['lang.FileSystemClassLoader', global.classpath[c]];
   }
 };
 
