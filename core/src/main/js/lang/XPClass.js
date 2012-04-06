@@ -59,14 +59,17 @@ lang.XPClass.prototype.isEnum = function XPClass$isEnum() {
 }
 
 lang.XPClass.prototype.hasMethod = function XPClass$hasMethod(name) {
-  return (name in this.$reflect || name in this.$reflect.prototype);
+  return (
+    name in this.$reflect.prototype ||
+    (name in this.$reflect && typeof(this.$reflect[name]) === 'function')
+  );
 }
 
 lang.XPClass.prototype.getMethod = function XPClass$getMethod(name) {
-  if (name in this.$reflect) {
-    return new lang.reflect.Method(this, name, lang.reflect.Modifiers.PUBLIC | lang.reflect.Modifiers.STATIC);
-  } else if (name in this.$reflect.prototype) {
+  if (name in this.$reflect.prototype) {
     return new lang.reflect.Method(this, name, lang.reflect.Modifiers.PUBLIC);
+  } else if (name in this.$reflect && typeof(this.$reflect[name]) === 'function') {
+    return new lang.reflect.Method(this, name, lang.reflect.Modifiers.PUBLIC | lang.reflect.Modifiers.STATIC);
   }
   throw new lang.ElementNotFoundException('No such method ' + this.$name + '::' + name);
 }

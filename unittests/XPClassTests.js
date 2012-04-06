@@ -106,7 +106,7 @@ this.getClass().getField('non-existant');};unittests.XPClassTests.prototype.getN
 
 
 unittests.XPClassTests.prototype.hasNameMethod= function XPClassTests$hasNameMethod(){
-this.assertTrue(this.getClass().hasMethod('name'));};unittests.XPClassTests.prototype.hasNameMethod['@']= {test:null};unittests.XPClassTests.prototype.hasNameMethod['/']= "Tests hasMethod()";unittests.XPClassTests.prototype.hasNameMethod['_']= {returns: 'void',throws: [],signature: []};
+this.assertTrue(this.getClass().hasMethod(this.$name));};unittests.XPClassTests.prototype.hasNameMethod['@']= {test:null};unittests.XPClassTests.prototype.hasNameMethod['/']= "Tests hasMethod()";unittests.XPClassTests.prototype.hasNameMethod['_']= {returns: 'void',throws: [],signature: []};
 
 
 
@@ -115,9 +115,9 @@ this.assertTrue(this.getClass().hasMethod('name'));};unittests.XPClassTests.prot
 
 
 unittests.XPClassTests.prototype.nameMethod= function XPClassTests$nameMethod(){
-$method=this.getClass().getMethod('name');
+$method=this.getClass().getMethod(this.$name);
 this.assertInstanceOf('lang.reflect.Method',$method);
-this.assertEquals('name',$method.getName());};unittests.XPClassTests.prototype.nameMethod['@']= {test:null};unittests.XPClassTests.prototype.nameMethod['/']= "Tests getMethod()";unittests.XPClassTests.prototype.nameMethod['_']= {returns: 'void',throws: [],signature: []};
+this.assertEquals(this.$name,$method.getName());};unittests.XPClassTests.prototype.nameMethod['@']= {test:null};unittests.XPClassTests.prototype.nameMethod['/']= "Tests getMethod()";unittests.XPClassTests.prototype.nameMethod['_']= {returns: 'void',throws: [],signature: []};
 
 
 
@@ -377,4 +377,26 @@ this.assertTrue(this.getClass().isSubclassOf(this.getClass().getParentclass()));
 
 
 unittests.XPClassTests.prototype.thisIsNotSubclassOfSelfClass= function XPClassTests$thisIsNotSubclassOfSelfClass(){
-this.assertFalse(this.getClass().isSubclassOf(lang.XPClass.forName('unittests.XPClassTests')));};unittests.XPClassTests.prototype.thisIsNotSubclassOfSelfClass['@']= {test:null};unittests.XPClassTests.prototype.thisIsNotSubclassOfSelfClass['/']= "Tests isSubclassOf()";unittests.XPClassTests.prototype.thisIsNotSubclassOfSelfClass['_']= {returns: 'void',throws: [],signature: []};unittests.XPClassTests['/']= "Test lang.XPClass";
+this.assertFalse(this.getClass().isSubclassOf(lang.XPClass.forName('unittests.XPClassTests')));};unittests.XPClassTests.prototype.thisIsNotSubclassOfSelfClass['@']= {test:null};unittests.XPClassTests.prototype.thisIsNotSubclassOfSelfClass['/']= "Tests isSubclassOf()";unittests.XPClassTests.prototype.thisIsNotSubclassOfSelfClass['_']= {returns: 'void',throws: [],signature: []};
+
+
+
+
+
+
+
+
+
+unittests.XPClassTests.prototype.doesNotHaveNameMethod= function XPClassTests$doesNotHaveNameMethod(){
+this.assertFalse(this.getClass().hasMethod('name'));};unittests.XPClassTests.prototype.doesNotHaveNameMethod['@']= {test:null};unittests.XPClassTests.prototype.doesNotHaveNameMethod['/']= "Tests hasMethod() with \"name\" as argument (ECMAScript 5's\nFunction.prototype.name property should not be reported as\nmethod)";unittests.XPClassTests.prototype.doesNotHaveNameMethod['_']= {returns: 'void',throws: [],signature: []};
+
+
+
+
+
+
+
+
+
+unittests.XPClassTests.prototype.getNameMethod= function XPClassTests$getNameMethod(){
+this.getClass().getMethod('name');};unittests.XPClassTests.prototype.getNameMethod['@']= {test:null,expect:'lang.ElementNotFoundException'};unittests.XPClassTests.prototype.getNameMethod['/']= "Tests getMethod() with \"name\" as argument (ECMAScript 5's\nFunction.prototype.name property should not be reported as\nmethod)";unittests.XPClassTests.prototype.getNameMethod['_']= {returns: 'void',throws: [],signature: []};unittests.XPClassTests['/']= "Test lang.XPClass";

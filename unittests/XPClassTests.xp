@@ -106,7 +106,7 @@ public class XPClassTests extends TestCase {
    */
   [@test]
   public void hasNameMethod() {
-    $this.assertTrue($this.getClass().hasMethod('name'));
+    $this.assertTrue($this.getClass().hasMethod($this.name));
   }
 
   /**
@@ -115,9 +115,9 @@ public class XPClassTests extends TestCase {
    */
   [@test]
   public void nameMethod() {
-    $method= $this.getClass().getMethod('name');
+    $method= $this.getClass().getMethod($this.name);
     $this.assertInstanceOf('lang.reflect.Method', $method);
-    $this.assertEquals('name', $method.getName());
+    $this.assertEquals($this.name, $method.getName());
   }
 
   /**
@@ -378,5 +378,27 @@ public class XPClassTests extends TestCase {
   [@test]
   public void thisIsNotSubclassOfSelfClass() {
     $this.assertFalse($this.getClass().isSubclassOf(self::class));
+  }
+
+  /**
+   * Tests hasMethod() with "name" as argument (ECMAScript 5's
+   * Function.prototype.name property should not be reported as
+   * method)
+   *
+   */
+  [@test]
+  public void doesNotHaveNameMethod() {
+    $this.assertFalse($this.getClass().hasMethod('name'));
+  }
+
+  /**
+   * Tests getMethod() with "name" as argument (ECMAScript 5's
+   * Function.prototype.name property should not be reported as
+   * method)
+   *
+   */
+  [@test, @expect('lang.ElementNotFoundException')]
+  public void getNameMethod() {
+    $this.getClass().getMethod('name'); 
   }
 }
