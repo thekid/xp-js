@@ -103,11 +103,11 @@ arguments:
 
 ```sh
 $ node tools/node.js
-XP JS Microkernel 0.8.6 { Node 0.6.12 & V8 3.6.6.24 } @ Windows_NT 6.1.7600 (ia32)
+XP JS Microkernel 0.9.0 { Node 0.6.12 & V8 3.6.6.24 } @ Windows_NT 6.1.7600 (ia32)
 Copyright (c) 2011-2012 the XP group
 lang.FileSystemClassLoader<C:\cygwin\home\friebe\devel\xp-js\core\src\main\js>
 lang.FileSystemClassLoader<C:\cygwin\home\friebe\devel\xp-js\test\src\main\js>
-lang.FileSystemClassLoader<C:\cygwin\home\friebe\devel\xp-js\tools\src\main\js>
+lang.archive.ArchiveClassLoader<C:\cygwin\home\friebe\devel\xp-js\lib\tools.xar>
 lang.FileSystemClassLoader<C:\cygwin\home\friebe\devel\xp-js>
 ```
 
@@ -121,12 +121,11 @@ command:
 ```sh
 $ node tools/node.js Unittest unittests.*
 [........................................................................
-........................]
+................................]
 
-OK: 96 run, 96 succeeded, 0 failed
-Memory used: 12076 kB
-Time taken: 0.026 sec(s)
-
+OK: 104 run, 104 succeeded, 0 failed
+Memory used: 12980 kB
+Time taken: 0.016 sec(s)
 ```
 
 The tests are written in XP language. Any changes made to the `*.xp`
