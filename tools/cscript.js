@@ -185,7 +185,7 @@ global.native = function() {
   );
   return exports;
 }();
-global.version= "0.8.8";
+global.version= "0.9.0";
 function scanpath(paths, home) {
   var inc= [];
   for (p= 0; p < paths.length; p++) {
