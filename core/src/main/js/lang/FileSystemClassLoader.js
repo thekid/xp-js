@@ -2,8 +2,12 @@ lang.FileSystemClassLoader = define('lang.FileSystemClassLoader', 'lang.Object',
   this.$path= $path;
 });
 
-lang.FileSystemClassLoader.prototype.loadClass = function FileSystemClassLoader$loadClass($class) {
-  var fn = path.join(this.$path, $class.replace(/\./g, '/') + '.js');
+lang.FileSystemClassLoader.prototype.providesClass = function FileSystemClassLoader$providesClass($class) {
+  return global.fs.exists(global.fs.compose(this.$path, $class.replace(/\./g, '/') + '.js'));
+}
+
+lang.FileSystemClassLoader.prototype.loadClass0 = function FileSystemClassLoader$loadClass0($class) {
+  var fn = global.fs.compose(this.$path, $class.replace(/\./g, '/') + '.js');
   if (!global.fs.exists(fn)) {
     throw new lang.ClassNotFoundException('No such class ' + $class);
   }
@@ -16,10 +20,12 @@ lang.FileSystemClassLoader.prototype.loadClass = function FileSystemClassLoader$
   }
 
   include(fn);
-  global[$class]= it[names[n]]= eval(arguments[i]);
+  global[$class]= it[names[n]]= eval($class);
   if (typeof(it[names[n]]['__static']) === 'function') {
     it[names[n]].__static();
   }
+  
+  return $class;
 }
 
 lang.FileSystemClassLoader.prototype.toString = function FileSystemClassLoader$toString() {

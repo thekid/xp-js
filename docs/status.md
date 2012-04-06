@@ -19,6 +19,7 @@ These features behave the same:
 * lang.Generic root interface
 * Object hierarchy
 * Exception hierarchy
+* Class loading and xar files
 * Annotations
 * Apidoc comments reflection
 * Generic stringOf() method
@@ -43,7 +44,6 @@ Incomplete features
 -------------------
 These features are not complete yet:
 
-* Class Loader infrastructure - no .xar files
 * Class reflection
 * Package reflection
 * Interfaces - no runtime checks, inheritance missing

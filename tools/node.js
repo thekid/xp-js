@@ -21,8 +21,19 @@ global.fs = {
     return fs.readFileSync(uri).toString().split("\n");
   },
 
-  exists : function(uri) {
-    return path.existsSync(uri);
+  exists : path.existsSync,
+
+  compose : path.join,
+
+  ftype : function(uri) {
+    var stat= fs.statSync(uri);
+    if (stat.isFile()) {
+      return 'file';
+    } else if (stat.isDirectory()) {
+      return 'dir';
+    } else {
+      return null;
+    }
   },
 
   glob : function(uri, pattern) {
@@ -201,24 +212,27 @@ global.stringOf= function(object) {
     default: throw new lang.IllegalArgumentException('Unknown type ' + typeof(object));
   }
 }
+global.loader = function(name) {
+  if (typeof(global[name]) === 'function') return null;
+  var names = name.split('.');
+  var it = global;
+  for (var n= 0; n < names.length - 1; n++) {
+    if (typeof(it[names[n]]) === 'undefined') it[names[n]]= {};
+    it = it[names[n]];
+  }
+  for (var c= 0; c < global.classpath.length; c++) {
+    var fn = path.join(global.classpath[c], name.replace(/\./g, '/') + '.js');
+    if (!global.fs.exists(fn)) continue;
+    include(fn);
+    global[name]= it[names[n]]= eval(name);
+    if (typeof(it[names[n]]['__static']) === 'function') {
+      it[names[n]].__static();
+    }
+  }
+};
 global.uses= function uses() {
   for (var i= 0; i < arguments.length; i++) {
-    if (typeof(global[arguments[i]]) === 'function') continue;
-    var names = arguments[i].split('.');
-    var it = global;
-    for (var n= 0; n < names.length - 1; n++) {
-      if (typeof(it[names[n]]) === 'undefined') it[names[n]]= {};
-      it = it[names[n]];
-    }
-    for (var c= 0; c < global.classpath.length; c++) {
-      var fn = path.join(global.classpath[c], arguments[i].replace(/\./g, '/') + '.js');
-      if (!global.fs.exists(fn)) continue;
-      include(fn);
-      global[arguments[i]]= it[names[n]]= eval(arguments[i]);
-      if (typeof(it[names[n]]['__static']) === 'function') {
-        it[names[n]].__static();
-      }
-    }
+    global.loader(arguments[i]);
   }
 }
 global.define= function define(name, parent, construct) {

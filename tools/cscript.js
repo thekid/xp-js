@@ -22,6 +22,15 @@ for (var i = 0; i < WScript.Arguments.Count(); i++) {
   argv.push(WScript.Arguments.Item(i));
 }
 
+var path = { };
+path.join = function() {
+  var path = '';
+  for (var i = 0; i < arguments.length; i++) {
+    if (typeof(arguments[i]) === 'string') path+= '\\' + arguments[i].replace(/(\/)/g, '\\');
+  }
+  return path.substring(1);
+}
+
 
 global.fs = {
   DIRECTORY_SEPARATOR : '\\',
@@ -32,6 +41,20 @@ global.fs = {
 
   exists : function(uri) {
     return fso.FileExists(uri);
+  },
+
+  compose : function() {
+    return path.join.apply(null, arguments);
+  },
+
+  ftype : function(uri) {
+    if (fso.FolderExists(uri)) {
+      return 'dir';
+    } else if (fso.FileExists(uri)) {
+      return 'file';
+    } else {
+      return null;
+    }
   },
 
   glob : function(uri, pattern) {
@@ -50,13 +73,14 @@ global.fs = {
   }
 };
 
-var path = { };
-path.join = function() {
-  var path = '';
-  for (var i = 0; i < arguments.length; i++) {
-    if (typeof(arguments[i]) === 'string') path+= '\\' + arguments[i].replace(/(\/)/g, '\\');
+global.xar = {
+  acquire : function(path) {
+    return {
+      handle : null,
+      index : {},
+      close : function() { }
+    };
   }
-  return path.substring(1);
 }
 
 
@@ -226,24 +250,27 @@ global.stringOf= function(object) {
     default: throw new lang.IllegalArgumentException('Unknown type ' + typeof(object));
   }
 }
+global.loader = function(name) {
+  if (typeof(global[name]) === 'function') return null;
+  var names = name.split('.');
+  var it = global;
+  for (var n= 0; n < names.length - 1; n++) {
+    if (typeof(it[names[n]]) === 'undefined') it[names[n]]= {};
+    it = it[names[n]];
+  }
+  for (var c= 0; c < global.classpath.length; c++) {
+    var fn = path.join(global.classpath[c], name.replace(/\./g, '/') + '.js');
+    if (!global.fs.exists(fn)) continue;
+    include(fn);
+    global[name]= it[names[n]]= eval(name);
+    if (typeof(it[names[n]]['__static']) === 'function') {
+      it[names[n]].__static();
+    }
+  }
+};
 global.uses= function uses() {
   for (var i= 0; i < arguments.length; i++) {
-    if (typeof(global[arguments[i]]) === 'function') continue;
-    var names = arguments[i].split('.');
-    var it = global;
-    for (var n= 0; n < names.length - 1; n++) {
-      if (typeof(it[names[n]]) === 'undefined') it[names[n]]= {};
-      it = it[names[n]];
-    }
-    for (var c= 0; c < global.classpath.length; c++) {
-      var fn = path.join(global.classpath[c], arguments[i].replace(/\./g, '/') + '.js');
-      if (!global.fs.exists(fn)) continue;
-      include(fn);
-      global[arguments[i]]= it[names[n]]= eval(arguments[i]);
-      if (typeof(it[names[n]]['__static']) === 'function') {
-        it[names[n]].__static();
-      }
-    }
+    global.loader(arguments[i]);
   }
 }
 global.define= function define(name, parent, construct) {
