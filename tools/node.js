@@ -39,6 +39,51 @@ global.fs = {
   }
 };
 
+global.xar = {
+  acquire : function(path) {
+    var v;
+    var fd = fs.openSync(path, 'r');
+    var header = new Buffer(0x0100);
+    var entry = new Buffer(0x0100);
+
+
+    fs.readSync(fd, header, 0, 0x0100, null);
+    if ('CCA' != header.slice(0, 3)) {
+      fs.close(fd);
+      throw new Error('Malformed archive ' + path);
+    }
+    if (2 !== (v= header.readInt8(3))) {
+      fs.close(fd);
+      throw new Error('Can only interpret v2 archives, have v' + v);
+    }
+    var size= header.readUInt32LE(4);
+
+
+    var offset= 0x0100 + size * 0x0100;
+    var entries= {};
+    for (var i = 0; i < size; i++) {
+      fs.readSync(fd, entry, 0, 0x0100, null);
+      v= entry.slice(0, 240).toString();
+      entries[v.substring(0, v.indexOf("\0"))]= {
+        size : entry.readUInt32LE(240),
+        offset : offset + entry.readUInt32LE(244),
+        number : i,
+        read : function() {
+          var buf = new Buffer(this.size);
+          fs.readSync(fd, buf, 0, this.size, this.offset);
+          return buf;
+        }
+      };
+    }
+
+    return {
+      handle : fd,
+      index : entries,
+      close : function() { fs.close(this.fd); }
+    };
+  }
+};
+
 
 global.out= {
   write : function(data) {
