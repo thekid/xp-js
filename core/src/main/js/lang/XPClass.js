@@ -76,17 +76,17 @@ lang.XPClass.prototype.getMethod = function XPClass$getMethod(name) {
 
 lang.XPClass.prototype.getMethods = function XPClass$getMethods() {
   var methods = new Array();
-  var gather = function(self, object, parent, modifiers) {
+  var gather = function(self, object, modifiers) {
     modifiers |= lang.reflect.Modifiers.PUBLIC;
     for (var member in object) {
-      if ((parent || object.hasOwnProperty(member)) && typeof(object[member]) === 'function') {
+      if (typeof(object[member]) === 'function' && '__' !== member.substring(0, 2)) {
         methods.push(new lang.reflect.Method(self, member, modifiers));
       }
     }
   };
 
-  gather(this, this.$reflect, false, lang.reflect.Modifiers.STATIC);
-  gather(this, this.$reflect.prototype, true, 0);
+  gather(this, this.$reflect, lang.reflect.Modifiers.STATIC);
+  gather(this, this.$reflect.prototype, 0);
   return methods;
 }
 
