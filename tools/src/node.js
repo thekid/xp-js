@@ -21,8 +21,19 @@ global.fs = {
     return fs.readFileSync(uri).toString().split("\n");
   },
 
-  exists : function(uri) {
-    return path.existsSync(uri);
+  exists : path.existsSync,
+  
+  compose : path.join,
+  
+  ftype : function(uri) {
+    var stat= fs.statSync(uri);
+    if (stat.isFile()) {
+      return 'file'; 
+    } else if (stat.isDirectory()) {
+      return 'dir';
+    } else {
+      return null; // Could be a socket, device, FIFO, ...
+    }
   },
 
   glob : function(uri, pattern) {

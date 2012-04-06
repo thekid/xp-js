@@ -22,6 +22,15 @@ for (var i = 0; i < WScript.Arguments.Count(); i++) {
   argv.push(WScript.Arguments.Item(i));
 }
 
+var path = { };
+path.join = function() {
+  var path = '';
+  for (var i = 0; i < arguments.length; i++) {
+    if (typeof(arguments[i]) === 'string') path+= '\\' + arguments[i].replace(/(\/)/g, '\\');
+  }
+  return path.substring(1);
+}
+
 // Filesystem
 global.fs = {
   DIRECTORY_SEPARATOR : '\\',
@@ -32,6 +41,20 @@ global.fs = {
 
   exists : function(uri) {
     return fso.FileExists(uri);
+  },
+
+  compose : function() {
+    return path.join.apply(null, arguments);
+  },
+
+  ftype : function(uri) {
+    if (fso.FolderExists(uri)) {
+      return 'dir';
+    } else if (fso.FileExists(uri)) {
+      return 'file';
+    } else {
+      return null;
+    }
   },
 
   glob : function(uri, pattern) {
@@ -50,13 +73,14 @@ global.fs = {
   }
 };
 
-var path = { };
-path.join = function() {
-  var path = '';
-  for (var i = 0; i < arguments.length; i++) {
-    if (typeof(arguments[i]) === 'string') path+= '\\' + arguments[i].replace(/(\/)/g, '\\');
+global.xar = {
+  acquire : function(path) {
+    return { 
+      handle : null, 
+      index  : {},
+      close  : function() {  }
+    };
   }
-  return path.substring(1);
 }
 
 // Process
