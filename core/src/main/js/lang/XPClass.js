@@ -48,7 +48,7 @@ lang.XPClass.prototype.isSubclassOf = function XPClass$isSubclassOf($cmp) {
   }
 
   // Check prototype chain and interfaces
-  return (
+  return $cmp !== this.$reflect && (
     $cmp.prototype.isPrototypeOf(this.$reflect.prototype) ||
     this.$reflect['<'].indexOf($cmp) >= 0
   );
