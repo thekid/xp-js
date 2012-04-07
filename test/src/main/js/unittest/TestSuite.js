@@ -20,6 +20,10 @@ unittest.TestSuite.prototype.run = function TestSuite$run() {
 
     for (var m= 0; m < methods.length; m++) {
       if (!methods[m].hasAnnotation('test')) continue;
+      if (methods[m].hasAnnotation('ignore')) {
+        util.cmd.Console.write('I');
+        continue;
+      }
       var instance = this.$tests[i].newInstance(methods[m].getName());
       var annotation = methods[m].getAnnotation('test');
       var expect = methods[m].hasAnnotation('expect');
