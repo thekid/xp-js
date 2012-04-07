@@ -31,6 +31,7 @@ These features behave the same:
 * Typesafe enums including abstract ones, and enum reflection
 * Thrown exceptions metadata
 * Properties
+* Lambdas
 
 Supported by compilation
 ------------------------
@@ -74,7 +75,6 @@ Not supported by compiler
 -------------------------
 These features are missing in the compiler:
 
-* Lambdas
 * Operators
 * Indexers
 * Dynamic instanceof (`instanceof $t`)
