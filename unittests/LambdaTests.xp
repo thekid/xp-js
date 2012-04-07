@@ -85,6 +85,19 @@ public class LambdaTests extends TestCase {
    *
    */
   [@test]
+  public void applyWithLoop() {
+    $callbacks= [];
+    for ($i= 0; $i < 2; $i++) {
+      $callbacks[]= #{ -> $i };
+    }
+    $this.assertEquals(0, $callbacks[0].());
+  }
+
+  /**
+   * Test 
+   *
+   */
+  [@test]
   public void execution() {
     $this.assertEquals(3, #{ $a -> $a + 1 }.(2));
   }

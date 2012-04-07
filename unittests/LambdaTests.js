@@ -77,7 +77,20 @@ this.filter([1,2,3,4,5,6,7,8,9,10],function($a) {$result=$a&1;return $result;}))
 
 unittests.LambdaTests.prototype.applyWithCapturing= function LambdaTests$applyWithCapturing(){
 $mul=3;
-this.assertEquals([3,6,9],this.apply([1,2,3],function($a) {return $a*$mul;}));};unittests.LambdaTests.prototype.applyWithCapturing['@']= {test:null};unittests.LambdaTests.prototype.applyWithCapturing['/']= "Test";unittests.LambdaTests.prototype.applyWithCapturing['_']= {returns: 'void',throws: [],signature: []};
+this.assertEquals([3,6,9],this.apply([1,2,3],(function($mul){ return function($a) {return $a*$mul;}})($mul)));};unittests.LambdaTests.prototype.applyWithCapturing['@']= {test:null};unittests.LambdaTests.prototype.applyWithCapturing['/']= "Test";unittests.LambdaTests.prototype.applyWithCapturing['_']= {returns: 'void',throws: [],signature: []};
+
+
+
+
+
+
+
+unittests.LambdaTests.prototype.applyWithLoop= function LambdaTests$applyWithLoop(){
+$callbacks=[];
+for ($i=0;$i < 2;$i++) {
+$callbacks.push((function($i){ return function() {return $i;}})($i));};
+
+this.assertEquals(0,$callbacks[0].call(this));};unittests.LambdaTests.prototype.applyWithLoop['@']= {test:null};unittests.LambdaTests.prototype.applyWithLoop['/']= "Test";unittests.LambdaTests.prototype.applyWithLoop['_']= {returns: 'void',throws: [],signature: []};
 
 
 
